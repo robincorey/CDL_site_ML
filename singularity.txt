@@ -1,0 +1,8 @@
+Note: to open gnina shell need singularity
+
+container built using:
+singularity build gnina.simg docker://dkoes/gnina
+
+to open:
+export SINGULARITY_BINDPATH="/sansom/s156a/bioc1535"
+singularity shell --nv /sansom/s156a/bioc1535/gnina/gnina.simg

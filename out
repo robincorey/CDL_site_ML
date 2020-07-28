@@ -1,0 +1,57 @@
+                     :-) GROMACS - gmx editconf, 2019.4 (-:
+
+                            GROMACS is written by:
+     Emile Apol      Rossen Apostolov      Paul Bauer     Herman J.C. Berendsen
+    Par Bjelkmar      Christian Blau   Viacheslav Bolnykh     Kevin Boyd    
+ Aldert van Buuren   Rudi van Drunen     Anton Feenstra       Alan Gray     
+  Gerrit Groenhof     Anca Hamuraru    Vincent Hindriksen  M. Eric Irrgang  
+  Aleksei Iupinov   Christoph Junghans     Joe Jordan     Dimitrios Karkoulis
+    Peter Kasson        Jiri Kraus      Carsten Kutzner      Per Larsson    
+  Justin A. Lemkul    Viveca Lindahl    Magnus Lundborg     Erik Marklund   
+    Pascal Merz     Pieter Meulenhoff    Teemu Murtola       Szilard Pall   
+    Sander Pronk      Roland Schulz      Michael Shirts    Alexey Shvetsov  
+   Alfons Sijbers     Peter Tieleman      Jon Vincent      Teemu Virolainen 
+ Christian Wennberg    Maarten Wolf   
+                           and the project leaders:
+        Mark Abraham, Berk Hess, Erik Lindahl, and David van der Spoel
+
+Copyright (c) 1991-2000, University of Groningen, The Netherlands.
+Copyright (c) 2001-2018, The GROMACS development team at
+Uppsala University, Stockholm University and
+the Royal Institute of Technology, Sweden.
+check out http://www.gromacs.org for more information.
+
+GROMACS is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
+as published by the Free Software Foundation; either version 2.1
+of the License, or (at your option) any later version.
+
+GROMACS:      gmx editconf, version 2019.4
+Executable:   /sbcb/packages/opt/Linux_x86_64/gromacs/2019.4_GCC6.2_CUDA9.2.AVX2/bin/gmx
+Data prefix:  /sbcb/packages/opt/Linux_x86_64/gromacs/2019.4_GCC6.2_CUDA9.2.AVX2
+Working dir:  /sansom/s156a/bioc1535/CDL_site_ML
+Command line:
+  gmx editconf -f /sansom/s156a/bioc1535/EC_MEMPROT/Data/5us_analyses/test_PyLipID_sites/1FFT/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses/BSid1_No1.gro -o /sansom/s156a/bioc1535/EC_MEMPROT/Data/5us_analyses/Sites_for_ML/1FFT/1/pose.gro -d 2
+
+
+Back Off! I just backed up /sansom/s156a/bioc1535/EC_MEMPROT/Data/5us_analyses/Sites_for_ML/1FFT/1/pose.gro to /sansom/s156a/bioc1535/EC_MEMPROT/Data/5us_analyses/Sites_for_ML/1FFT/1/#pose.gro.1#
+
+GROMACS reminds you: "But I always say, one's company, two's a crowd, and three's a party." (Andy Warhol)
+
+Note that major changes are planned in future for editconf, to improve usability and utility.Read 2220 atoms
+Volume: 3292.82 nm^3, corresponds to roughly 1481700 electrons
+No velocities found
+    system size :  8.273  6.523  9.634 (nm)
+    center      : 11.611  8.516  6.170 (nm)
+    box vectors : 16.377 15.418 13.040 (nm)
+    box angles  :  90.00  90.00  90.00 (degrees)
+    box volume  :3292.82               (nm^3)
+    shift       : -5.475 -3.255  0.647 (nm)
+new center      :  6.137  5.261  6.817 (nm)
+new box vectors : 12.273 10.523 13.634 (nm)
+new box angles  :  90.00  90.00  90.00 (degrees)
+new box volume  :1760.81               (nm^3)
+
+WARNING: No boxtype specified - distance condition applied in each dimension.
+If the molecule rotates the actual distance will be smaller. You might want
+to use a cubic box instead, or why not try a dodecahedron today?
