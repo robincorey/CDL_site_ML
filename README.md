@@ -1,19 +1,27 @@
-Testing gnina installation and setup
-Good refs here: 
+***this is a work in process*** none of these files are intended to be ready for others to use
+
+Intro
+====
+
+Building approach to apply ML to CDL-protein binding data, as per CG
+
+Using gnina, as described here:
 https://github.com/RMeli/gsoc19
 https://github.com/gnina/gnina
+https://pubs.acs.org/doi/pdf/10.1021/acs.jcim.6b00740
 
-
-To open gnina shell:
+Note: to open gnina shell need singularity
 
 export SINGULARITY_BINDPATH="/sansom/s156a/bioc1535"
 singularity shell --nv /sansom/s156a/bioc1535/gnina/gnina.simg
 
-Then you're in the shell.
+Approach
+====
 
-******* 
+Build training set from subset of data - use actual CG data.
 
-Approach: Build traning set from subset of data - use actual CG data.
+Scripts
+====
 
 STEP 1: find sites
 
