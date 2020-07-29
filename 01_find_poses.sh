@@ -69,3 +69,5 @@ do
 		done
 	done
 done
+
+rm -f step*pdb *mdp
