@@ -1,57 +1,448 @@
-                     :-) GROMACS - gmx editconf, 2019.4 (-:
-
-                            GROMACS is written by:
-     Emile Apol      Rossen Apostolov      Paul Bauer     Herman J.C. Berendsen
-    Par Bjelkmar      Christian Blau   Viacheslav Bolnykh     Kevin Boyd    
- Aldert van Buuren   Rudi van Drunen     Anton Feenstra       Alan Gray     
-  Gerrit Groenhof     Anca Hamuraru    Vincent Hindriksen  M. Eric Irrgang  
-  Aleksei Iupinov   Christoph Junghans     Joe Jordan     Dimitrios Karkoulis
-    Peter Kasson        Jiri Kraus      Carsten Kutzner      Per Larsson    
-  Justin A. Lemkul    Viveca Lindahl    Magnus Lundborg     Erik Marklund   
-    Pascal Merz     Pieter Meulenhoff    Teemu Murtola       Szilard Pall   
-    Sander Pronk      Roland Schulz      Michael Shirts    Alexey Shvetsov  
-   Alfons Sijbers     Peter Tieleman      Jon Vincent      Teemu Virolainen 
- Christian Wennberg    Maarten Wolf   
-                           and the project leaders:
-        Mark Abraham, Berk Hess, Erik Lindahl, and David van der Spoel
-
-Copyright (c) 1991-2000, University of Groningen, The Netherlands.
-Copyright (c) 2001-2018, The GROMACS development team at
-Uppsala University, Stockholm University and
-the Royal Institute of Technology, Sweden.
-check out http://www.gromacs.org for more information.
-
-GROMACS is free software; you can redistribute it and/or modify it
-under the terms of the GNU Lesser General Public License
-as published by the Free Software Foundation; either version 2.1
-of the License, or (at your option) any later version.
-
-GROMACS:      gmx editconf, version 2019.4
-Executable:   /sbcb/packages/opt/Linux_x86_64/gromacs/2019.4_GCC6.2_CUDA9.2.AVX2/bin/gmx
-Data prefix:  /sbcb/packages/opt/Linux_x86_64/gromacs/2019.4_GCC6.2_CUDA9.2.AVX2
-Working dir:  /sansom/s156a/bioc1535/CDL_site_ML
-Command line:
-  gmx editconf -f /sansom/s156a/bioc1535/EC_MEMPROT/Data/5us_analyses/test_PyLipID_sites/1FFT/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses/BSid1_No1.gro -o /sansom/s156a/bioc1535/EC_MEMPROT/Data/5us_analyses/Sites_for_ML/1FFT/1/pose.gro -d 2
-
-
-Back Off! I just backed up /sansom/s156a/bioc1535/EC_MEMPROT/Data/5us_analyses/Sites_for_ML/1FFT/1/pose.gro to /sansom/s156a/bioc1535/EC_MEMPROT/Data/5us_analyses/Sites_for_ML/1FFT/1/#pose.gro.1#
-
-GROMACS reminds you: "But I always say, one's company, two's a crowd, and three's a party." (Andy Warhol)
-
-Note that major changes are planned in future for editconf, to improve usability and utility.Read 2220 atoms
-Volume: 3292.82 nm^3, corresponds to roughly 1481700 electrons
-No velocities found
-    system size :  8.273  6.523  9.634 (nm)
-    center      : 11.611  8.516  6.170 (nm)
-    box vectors : 16.377 15.418 13.040 (nm)
-    box angles  :  90.00  90.00  90.00 (degrees)
-    box volume  :3292.82               (nm^3)
-    shift       : -5.475 -3.255  0.647 (nm)
-new center      :  6.137  5.261  6.817 (nm)
-new box vectors : 12.273 10.523 13.634 (nm)
-new box angles  :  90.00  90.00  90.00 (degrees)
-new box volume  :1760.81               (nm^3)
-
-WARNING: No boxtype specified - distance condition applied in each dimension.
-If the molecule rotates the actual distance will be smaller. You might want
-to use a cubic box instead, or why not try a dodecahedron today?
+starting 1FFT 0 0
+starting 1FFT 1 0
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/1FX8/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 1FX8 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FX8/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FX8/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FX8/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FX8/0/0/sys.ndx: No such file or directory
+starting 1FX8 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FX8/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FX8/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FX8/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FX8/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/1KF6/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 1KF6 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KF6/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KF6/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KF6/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KF6/0/0/sys.ndx: No such file or directory
+starting 1KF6 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KF6/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KF6/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KF6/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KF6/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/1KPK/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 1KPK 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KPK/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KPK/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KPK/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KPK/0/0/sys.ndx: No such file or directory
+starting 1KPK 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KPK/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KPK/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KPK/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KPK/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/1NEK/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 1NEK 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1NEK/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1NEK/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1NEK/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1NEK/0/0/sys.ndx: No such file or directory
+starting 1NEK 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1NEK/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1NEK/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1NEK/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1NEK/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/5OQT/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 5OQT 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OQT/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OQT/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OQT/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OQT/0/0/sys.ndx: No such file or directory
+starting 5OQT 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OQT/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OQT/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OQT/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OQT/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/4JR9/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 4JR9 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4JR9/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4JR9/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4JR9/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4JR9/0/0/sys.ndx: No such file or directory
+starting 4JR9 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4JR9/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4JR9/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4JR9/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4JR9/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/2HI7/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 2HI7 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2HI7/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2HI7/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2HI7/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2HI7/0/0/sys.ndx: No such file or directory
+starting 2HI7 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2HI7/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2HI7/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2HI7/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2HI7/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/3O7P/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 3O7P 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3O7P/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3O7P/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3O7P/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3O7P/0/0/sys.ndx: No such file or directory
+starting 3O7P 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3O7P/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3O7P/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3O7P/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3O7P/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/3ZE3/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 3ZE3 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3ZE3/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3ZE3/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3ZE3/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3ZE3/0/0/sys.ndx: No such file or directory
+starting 3ZE3 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3ZE3/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3ZE3/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3ZE3/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3ZE3/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/1ZCD/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 1ZCD 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1ZCD/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1ZCD/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1ZCD/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1ZCD/0/0/sys.ndx: No such file or directory
+starting 1ZCD 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1ZCD/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1ZCD/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1ZCD/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1ZCD/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/5OC0/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 5OC0 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OC0/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OC0/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OC0/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OC0/0/0/sys.ndx: No such file or directory
+starting 5OC0 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OC0/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OC0/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OC0/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5OC0/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/1PV6/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 1PV6 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PV6/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PV6/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PV6/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PV6/0/0/sys.ndx: No such file or directory
+starting 1PV6 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PV6/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PV6/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PV6/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PV6/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/3OB6/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 3OB6 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3OB6/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3OB6/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3OB6/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3OB6/0/0/sys.ndx: No such file or directory
+starting 3OB6 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3OB6/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3OB6/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3OB6/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3OB6/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/5MRW/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 5MRW 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5MRW/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5MRW/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5MRW/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5MRW/0/0/sys.ndx: No such file or directory
+starting 5MRW 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5MRW/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5MRW/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5MRW/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5MRW/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/5AZC/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 5AZC 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AZC/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AZC/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AZC/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AZC/0/0/sys.ndx: No such file or directory
+starting 5AZC 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AZC/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AZC/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AZC/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AZC/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/1Q16/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 1Q16 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1Q16/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1Q16/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1Q16/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1Q16/0/0/sys.ndx: No such file or directory
+starting 1Q16 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1Q16/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1Q16/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1Q16/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1Q16/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/2QFI/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 2QFI 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2QFI/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2QFI/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2QFI/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2QFI/0/0/sys.ndx: No such file or directory
+starting 2QFI 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2QFI/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2QFI/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2QFI/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2QFI/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/2IC8/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 2IC8 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2IC8/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2IC8/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2IC8/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2IC8/0/0/sys.ndx: No such file or directory
+starting 2IC8 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2IC8/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2IC8/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2IC8/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2IC8/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/1RC2/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 1RC2 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1RC2/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1RC2/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1RC2/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1RC2/0/0/sys.ndx: No such file or directory
+starting 1RC2 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1RC2/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1RC2/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1RC2/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1RC2/1/0/sys.ndx: No such file or directory
+starting 1IWG 0 0
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1IWG/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1IWG/0/0/sys.ndx: No such file or directory
+starting 1IWG 1 0
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1IWG/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1IWG/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/2WSX/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 2WSX 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2WSX/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2WSX/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2WSX/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2WSX/0/0/sys.ndx: No such file or directory
+starting 2WSX 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2WSX/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2WSX/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2WSX/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2WSX/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/5JWY/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 5JWY 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5JWY/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5JWY/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5JWY/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5JWY/0/0/sys.ndx: No such file or directory
+starting 5JWY 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5JWY/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5JWY/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5JWY/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5JWY/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/3B5D/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 3B5D 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3B5D/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3B5D/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3B5D/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3B5D/0/0/sys.ndx: No such file or directory
+starting 3B5D 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3B5D/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3B5D/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3B5D/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3B5D/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/3DHW/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 3DHW 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3DHW/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3DHW/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3DHW/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3DHW/0/0/sys.ndx: No such file or directory
+starting 3DHW 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3DHW/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3DHW/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3DHW/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3DHW/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/1PW4/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 1PW4 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PW4/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PW4/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PW4/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PW4/0/0/sys.ndx: No such file or directory
+starting 1PW4 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PW4/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PW4/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PW4/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1PW4/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/4Q65/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 4Q65 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4Q65/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4Q65/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4Q65/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4Q65/0/0/sys.ndx: No such file or directory
+starting 4Q65 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4Q65/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4Q65/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4Q65/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4Q65/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/4DJI/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 4DJI 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4DJI/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4DJI/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4DJI/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4DJI/0/0/sys.ndx: No such file or directory
+starting 4DJI 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4DJI/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4DJI/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4DJI/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4DJI/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/2R6G/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 2R6G 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2R6G/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2R6G/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2R6G/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2R6G/0/0/sys.ndx: No such file or directory
+starting 2R6G 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2R6G/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2R6G/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2R6G/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/2R6G/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/4GD3/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 4GD3 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4GD3/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4GD3/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4GD3/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4GD3/0/0/sys.ndx: No such file or directory
+starting 4GD3 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4GD3/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4GD3/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4GD3/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4GD3/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/5ZUG/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 5ZUG 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5ZUG/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5ZUG/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5ZUG/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5ZUG/0/0/sys.ndx: No such file or directory
+starting 5ZUG 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5ZUG/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5ZUG/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5ZUG/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5ZUG/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/6AL2/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 6AL2 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/6AL2/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/6AL2/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/6AL2/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/6AL2/0/0/sys.ndx: No such file or directory
+starting 6AL2 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/6AL2/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/6AL2/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/6AL2/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/6AL2/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/1L7V/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 1L7V 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1L7V/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1L7V/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1L7V/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1L7V/0/0/sys.ndx: No such file or directory
+starting 1L7V 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1L7V/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1L7V/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1L7V/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1L7V/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/4IU8/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 4IU8 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4IU8/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4IU8/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4IU8/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4IU8/0/0/sys.ndx: No such file or directory
+starting 4IU8 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4IU8/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4IU8/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4IU8/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4IU8/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/4KX6/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 4KX6 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4KX6/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4KX6/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4KX6/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4KX6/0/0/sys.ndx: No such file or directory
+starting 4KX6 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4KX6/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4KX6/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4KX6/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4KX6/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/3QE7/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 3QE7 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3QE7/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3QE7/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3QE7/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3QE7/0/0/sys.ndx: No such file or directory
+starting 3QE7 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3QE7/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3QE7/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3QE7/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3QE7/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/5SV0/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 5SV0 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5SV0/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5SV0/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5SV0/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5SV0/0/0/sys.ndx: No such file or directory
+starting 5SV0 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5SV0/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5SV0/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5SV0/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5SV0/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/1U77/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 1U77 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1U77/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1U77/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1U77/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1U77/0/0/sys.ndx: No such file or directory
+starting 1U77 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1U77/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1U77/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1U77/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1U77/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/5AJI/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 5AJI 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AJI/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AJI/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AJI/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AJI/0/0/sys.ndx: No such file or directory
+starting 5AJI 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AJI/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AJI/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AJI/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AJI/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/4ZP0/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 4ZP0 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4ZP0/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4ZP0/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4ZP0/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4ZP0/0/0/sys.ndx: No such file or directory
+starting 4ZP0 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4ZP0/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4ZP0/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4ZP0/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/4ZP0/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/3K07/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 3K07 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3K07/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3K07/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3K07/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3K07/0/0/sys.ndx: No such file or directory
+starting 3K07 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3K07/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3K07/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3K07/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/3K07/1/0/sys.ndx: No such file or directory
+./01_find_poses.sh: line 55: cd: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/test_PyLipID_sites/1KQF/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses: No such file or directory
+starting 1KQF 0 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KQF/0/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KQF/0/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KQF/0/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KQF/0/0/sys.ndx: No such file or directory
+starting 1KQF 1 0
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KQF/1/0/pose.gro' for reading: No such file or directory
+tail: cannot open '/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KQF/1/0/temp.top' for reading: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KQF/1/0/sys.ndx: No such file or directory
+sed: can't read /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KQF/1/0/sys.ndx: No such file or directory

@@ -30,7 +30,7 @@ echo -e '"CARD" '"|"' "POPE"' '\n' '"PROTEIN" '"|"' "CARD" '"|"' "POPE"' '\n' '"
 sed 's/CARD_POPE/LIPID/g' $4/sys.ndx -i
 sed 's/WN_ION/SOL_ION/g' $4/sys.ndx -i
 gmx grompp -f $CG/MDPs/eq_2019.mdp -c $4/em.gro -r $4/em.gro -p $4/topol.top -n $4/sys.ndx -o $4/eq >& $4/out_files/out_grompp2
-gmx mdrun -v -deffnm $4/eq -nsteps 100000 >& $4/out_files/out_eq # << needs to be longer
+gmx mdrun -v -deffnm $4/eq -nsteps 500000 -pin on -pinoffset 0 -ntomp 6 -ntmpi 1 >& $4/out_files/out_eq # << needs to be longer
 }
 
 get_frames () {
@@ -50,23 +50,27 @@ for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6
 do
 	mkdir -p $CD/Sites_for_ML/$pdb
 	# this is wrong, of course
-	site_dir=$CD/test_PyLipID_sites/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/Binding_Poses
+	site_dir=$CD/Sites_new/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD
 	# gets the range of sites
-	total=`(cd $site_dir && ls *gro) | tr -d [[:alpha:]]. | awk -F '_' '{print $1}' | sort -u | wc -l`
-	for site in `seq 0 1` #$((total-1))`
+	total=`(cd $site_dir/Binding_Poses && ls *gro) | tr -d [[:alpha:]]. | awk -F '_' '{print $1}' | sort -u | wc -l`
+	for site in `seq 0 $((total-1))`
 	do
-		for i in {0..0} 
-		do
-			echo starting $pdb $site $i
-			out_dir=$CD/Sites_for_ML/$pdb/$site/$i
-			mkdir -p $out_dir
-        		rm -f $out_dir/*.*
-        		mkdir -p $out_dir/out_files
-			build_system $pdb $site $i $out_dir
-			build_topology $pdb $site $i $out_dir
-			equil_system $pdb $site $i $out_dir
-			get_frames $pdb $site $i $out_dir
-		done
+		occ=`grep -A5 "Binding site ${site}$" $site_dir/BindingSites_Info_CARD.txt | tail -n 1 | awk '{print $4}' | awk -F'.' '{print $1}'`
+		if [[ $occ -gt 50 ]]
+		then
+			for i in {0..0} 
+			do
+				echo starting $pdb $site $i
+				out_dir=$CD/Sites_for_ML/$pdb/$site/$i
+				mkdir -p $out_dir
+				rm -f $out_dir/*.*
+				mkdir -p $out_dir/out_files
+				build_system $pdb $site $i $out_dir
+				build_topology $pdb $site $i $out_dir
+				equil_system $pdb $site $i $out_dir
+				get_frames $pdb $site $i $out_dir
+			done
+		fi
 	done
 done
 
