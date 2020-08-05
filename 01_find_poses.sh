@@ -4,6 +4,7 @@
 CD=/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses
 SETUP=/sansom/s156a/bioc1535/Ecoli_patch/full_complement/chosen
 
+# functions
 build_system () {
 gmx editconf -f $site_dir/Binding_Poses/BSid$2_No$i.gro -o $4/pose.gro -d 2 >& $4/out_files/out_edc1
 read -r x y z <<<$(tail -n 1 $4/pose.gro)
@@ -23,6 +24,34 @@ echo -e '\n#ifdef POSRES\n# include "posres.itp"\n#endif' >> $4/Protein.itp
 echo BB | gmx genrestr -f $4/ions.gro -n $4/BB.ndx -o $4/posres.itp >& $4/out_files/out_genr
 gmx grompp -f $CG/MDPs/em_memprot.mdp -c $4/ions.gro -r $4/ions.gro -p $4/topol.top -o $4/em -maxwarn 2 >& $4/out_files/out_grompp
 gmx mdrun -v -deffnm $4/em >& $4/out_files/out_em
+}
+
+# this section gets the distance from th card to the site - and filters less than 1 nm
+check_site () {
+txt_file=$CD/Sites_new/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
+site_occ=`sed -n "/Binding site $2$/,/^$/p" $txt_file | grep "BS Lipid Occupancy" | awk '{print $4}'`
+cutoff=`echo "scale=4; $site_occ / 2" | bc`
+resnum=`sed -n "/Binding site $2$/,/^$/p" $txt_file | tail -n+15 | awk -v var=$cutoff '$6>var' | awk '{print $1}' | tr -d [[:alpha:]] | sed ':a;N;$!ba;s/\n/ /g'`
+out=$4
+echo -e "site_occ $site_occ\ncutoff $cutoff\nresnum $resnum" > $out/site_specs
+rm -f $out/ndxs
+set -- "$resnum"
+for res in $@
+do
+        echo -n "ri$((res-1)) " >>  $out/ndxs
+done
+sed 's/ ri/ | ri/g' $out/ndxs -i
+echo "
+aGL0 | aPO1 | aPO2
+q" >> $out/ndxs
+gmx make_ndx -f $out/em.gro -o $out/site.ndx < $out/ndxs >& $out/out_files/out_sitendx
+site_ndx=`grep '\[ r_' $out/site.ndx | sed 's/\[//g' | sed 's/\]//g'`
+sed "s/$site_ndx/ Site /g" $out/site.ndx -i
+card_ndx=`grep '\[ GL0' $out/site.ndx | sed 's/\[//g' | sed 's/\]//g'`
+sed "s/$card_ndx/ CARD_HG /g" $out/site.ndx -i
+gmx distance -f $out/em.gro -s $out/em.tpr -oxyz $out/site_CL.xvg -select 'cog of group "Site" plus cog of group "CARD_HG"' -rmpbc no -pbc no -n $out/site.ndx >& $out/out_files/out_dist
+read -r x y z <<<$(tail -n 1 $out/site_CL.xvg)
+echo "scale = 4; sqrt($x^2 + $y^2)" | bc > $out/dist_from_site
 }
 
 equil_system () {
@@ -45,6 +74,7 @@ rm -f $4/frames/*#*
 }
 
 mkdir -p $CD/Sites_for_ML
+rm -f site_info/chosen.txt
 
 # loop through pdbs and extract sites
 for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6 5MRW 5AZC 1Q16 2QFI 2IC8 1RC2 1IWG 2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
@@ -59,17 +89,23 @@ do
 		occ=`grep -A5 "Binding site ${site}$" $site_dir/BindingSites_Info_CARD.txt | tail -n 1 | awk '{print $4}' | awk -F'.' '{print $1}'`
 		if [[ $occ -gt 50 ]]
 		then
-			for i in {0..0} 
+			for i in {0..9} 
 			do
-				echo starting $pdb $site $i
+				#echo starting $pdb $site $i
 				out_dir=$CD/Sites_for_ML/$pdb/$site/$i
 				mkdir -p $out_dir
-				rm -f $out_dir/*.*
 				mkdir -p $out_dir/out_files
-				build_system $pdb $site $i $out_dir
-				build_topology $pdb $site $i $out_dir
-				equil_system $pdb $site $i $out_dir
-				get_frames $pdb $site $i $out_dir
+				#build_system $pdb $site $i $out_dir
+				#build_topology $pdb $site $i $out_dir
+                                check_site $pdb $site $i $out_dir
+				dist_from_site=`awk -F '.' '{print $1}' $out_dir/dist_from_site`
+				if [[ $dist_from_site -lt 1 ]]
+				then
+					echo $pdb $site $i >> site_info/chosen.txt
+					equil_system $pdb $site $i $out_dir
+					get_frames $pdb $site $i $out_dir
+				fi
+				rm -f $out_dir/*#*
 			done
 		fi
 	done

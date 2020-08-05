@@ -34,7 +34,7 @@ mol addrep 0
 mol modstyle 2 0 VDW 1.500000 12.000000
 mol modcolor 2 0 ResType
 mol modmaterial 2 0 AOEdgy
-mol modselect 2 0 resid 1 2 4 5 393 466 469 470 498 499 
+mol modselect 2 0 name BB SC1 SC2 SC3 SC4 SC5 and resid 1 2 4 5 393 466 469 470 498 499 
 
 mol new 1FFT/1/0/frames/1.pdb type pdb
 set molID 1
@@ -62,7 +62,7 @@ mol addrep 1
 mol modstyle 2 1 VDW 1.500000 12.000000
 mol modcolor 2 1 ResType
 mol modmaterial 2 1 AOEdgy
-mol modselect 2 1 resid 20 21 23 24 27 28 40 41 47 48 50 51 106 109 110 111 112 
+mol modselect 2 1 name BB SC1 SC2 SC3 SC4 SC5 and resid 20 21 23 24 27 28 40 41 47 48 50 51 106 109 110 111 112 
 
 mol new 1FFT/11/0/frames/1.pdb type pdb
 set molID 2
@@ -90,7 +90,7 @@ mol addrep 2
 mol modstyle 2 2 VDW 1.500000 12.000000
 mol modcolor 2 2 ResType
 mol modmaterial 2 2 AOEdgy
-mol modselect 2 2 resid 291 292 515 516 519 520 523 580 581 582 583 584 585 586 587 
+mol modselect 2 2 name BB SC1 SC2 SC3 SC4 SC5 and resid 291 292 515 516 519 520 523 580 581 582 583 584 585 586 587 
 
 mol new 1FFT/14/0/frames/1.pdb type pdb
 set molID 3
@@ -118,7 +118,7 @@ mol addrep 3
 mol modstyle 2 3 VDW 1.500000 12.000000
 mol modcolor 2 3 ResType
 mol modmaterial 2 3 AOEdgy
-mol modselect 2 3 resid 819 820 821 822 823 824 825 826 827 829 830 831 832 834 837 838 840 841 914 918 
+mol modselect 2 3 name BB SC1 SC2 SC3 SC4 SC5 and resid 819 820 821 822 823 824 825 826 827 829 830 831 832 834 837 838 840 841 914 918 
 
 mol new 1FFT/17/0/frames/1.pdb type pdb
 set molID 4
@@ -146,7 +146,7 @@ mol addrep 4
 mol modstyle 2 4 VDW 1.500000 12.000000
 mol modcolor 2 4 ResType
 mol modmaterial 2 4 AOEdgy
-mol modselect 2 4 resid 835 836 839 901 902 905 906 
+mol modselect 2 4 name BB SC1 SC2 SC3 SC4 SC5 and resid 835 836 839 901 902 905 906 
 
 mol new 1FFT/4/0/frames/1.pdb type pdb
 set molID 5
@@ -174,7 +174,7 @@ mol addrep 5
 mol modstyle 2 5 VDW 1.500000 12.000000
 mol modcolor 2 5 ResType
 mol modmaterial 2 5 AOEdgy
-mol modselect 2 5 resid 765 766 900 903 904 907 908 909 915 916 
+mol modselect 2 5 name BB SC1 SC2 SC3 SC4 SC5 and resid 765 766 900 903 904 907 908 909 915 916 
 
 mol new 1FFT/6/0/frames/1.pdb type pdb
 set molID 6
@@ -202,7 +202,7 @@ mol addrep 6
 mol modstyle 2 6 VDW 1.500000 12.000000
 mol modcolor 2 6 ResType
 mol modmaterial 2 6 AOEdgy
-mol modselect 2 6 resid 263 264 267 559 560 561 562 563 564 565 566 568 
+mol modselect 2 6 name BB SC1 SC2 SC3 SC4 SC5 and resid 263 264 267 559 560 561 562 563 564 565 566 568 
 
 mol new 1FFT/9/0/frames/1.pdb type pdb
 set molID 7
@@ -230,5 +230,5 @@ mol addrep 7
 mol modstyle 2 7 VDW 1.500000 12.000000
 mol modcolor 2 7 ResType
 mol modmaterial 2 7 AOEdgy
-mol modselect 2 7 resid 324 325 326 327 328 331 398 399 400 401 403 404 407 471 472 543 544 547 548 549 550 
+mol modselect 2 7 name BB SC1 SC2 SC3 SC4 SC5 and resid 324 325 326 327 328 331 398 399 400 401 403 404 407 471 472 543 544 547 548 549 550 
 

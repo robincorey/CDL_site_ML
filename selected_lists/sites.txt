@@ -1,0 +1,2 @@
+;;; Manually selected from VMD analysis
+1FFT 0
