@@ -5,7 +5,7 @@ CD=/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses
 SETUP=/sansom/s156a/bioc1535/Ecoli_patch/full_complement/chosen
 
 build_system () {
-gmx editconf -f $site_dir/BSid$2_No$i.gro -o $4/pose.gro -d 2 >& $4/out_files/out_edc1
+gmx editconf -f $site_dir/Binding_Poses/BSid$2_No$i.gro -o $4/pose.gro -d 2 >& $4/out_files/out_edc1
 read -r x y z <<<$(tail -n 1 $4/pose.gro)
 python $CG/insane.py -f $4/pose.gro -o $4/$1.$2.$3.mem.gro -x $x -y $y -z $z -l POPE:100 -sol W -p $4/temp.top -center >& $4/out_files/out_mem
 }
@@ -39,8 +39,9 @@ mkdir -p $4/frames/
 for frame in {1..10}
 do
 	# times need to be tweaked
-	echo SYSTEM | gmx trjconv -f $4/eq.xtc -s $4/eq.tpr -dump $((frame*100)) -o $4/frames/$frame.pdb >& $4/out_files/out_frame_$frame
+	echo SYSTEM | gmx trjconv -f $4/eq.xtc -s $4/eq.tpr -dump $((frame*1000)) -o $4/frames/$frame.pdb >& $4/out_files/out_frame_$frame
 done
+rm -f $4/frames/*#*
 }
 
 mkdir -p $CD/Sites_for_ML
