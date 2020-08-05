@@ -5,13 +5,13 @@
 SITE=/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses
 
 make_load_file () {
-echo "mol new $1/$2/0/frames/1.pdb type pdb
+echo "mol new $1/$2/$4/frames/1.pdb type pdb
 set molID $3
 mol rename $3 {$1 $2}
 mol off $3" >> site_info/load_pds.scr
 for i in {2..10}
 do
-        echo "mol addfile $1/$2/0/frames/$i.pdb type pdb" >> site_info/load_pds.scr
+        echo "mol addfile $1/$2/$4/frames/$i.pdb type pdb" >> site_info/load_pds.scr
 done
 echo -n "mol modselect 0 $3 name BB
 mol modstyle 0 $3 QuickSurf 1.000000 0.500000 1.000000 1.000000
@@ -27,11 +27,10 @@ mol modstyle 2 $3 VDW 1.500000 12.000000
 mol modcolor 2 $3 ResType
 mol modmaterial 2 $3 AOEdgy
 mol modselect 2 $3 name BB SC1 SC2 SC3 SC4 SC5 and resid " >> site_info/load_pds.scr
-txt_file=$SITE/Sites_new/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
-site_occ=`sed -n "/Binding site $2$/,/^$/p" $txt_file | grep "BS Lipid Occupancy" | awk '{print $4}'`
-cutoff=`echo "scale=4; $site_occ / 2" | bc`
-resnum=`sed -n "/Binding site $2$/,/^$/p" $txt_file | tail -n+15 | awk -v var=$cutoff '$6>var' | awk '{print $1}' | tr -d [[:alpha:]] | sed ':a;N;$!ba;s/\n/ /g'`
-echo -n -e "$1 $2 $site_occ" >> site_info/site_info_$1.txt
+site_occ=`grep site_occ $SITE/Sites_for_ML/$1/$2/$4/site_specs | tr -d [[:alpha:]]_`
+cutoff=`grep cutoff $SITE/Sites_for_ML/$1/$2/$4/site_specs | tr -d [[:alpha:]]`
+resnum=`grep resnum $SITE/Sites_for_ML/$1/$2/$4/site_specs | tr -d [[:alpha:]]`
+echo -n -e "$1 $2 $4 $site_occ" >> site_info/site_info_$1.txt
 set -- "$resnum"
 for res in $@
 do 
@@ -52,7 +51,16 @@ do
 	rm -f site_info/site_info_$pdb.txt
         for site in `ls $SITE/Sites_for_ML/$pdb`
         do
-                make_load_file $pdb $site $count
-                count=$((count+1))
+		for i in {0..9}
+		do
+		if [[ -f $SITE/Sites_for_ML/$pdb/$site/$i/eq.gro ]]
+		then
+			echo $pdb $site $i  yes!
+			make_load_file $pdb $site $count $i
+			count=$((count+1))
+		else
+			echo $pdb $site $i  no!
+		fi
+		done
         done
 done

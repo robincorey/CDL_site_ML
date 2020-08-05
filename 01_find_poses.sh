@@ -95,8 +95,8 @@ do
 				out_dir=$CD/Sites_for_ML/$pdb/$site/$i
 				mkdir -p $out_dir
 				mkdir -p $out_dir/out_files
-				#build_system $pdb $site $i $out_dir
-				#build_topology $pdb $site $i $out_dir
+				build_system $pdb $site $i $out_dir
+				build_topology $pdb $site $i $out_dir
                                 check_site $pdb $site $i $out_dir
 				dist_from_site=`awk -F '.' '{print $1}' $out_dir/dist_from_site`
 				if [[ $dist_from_site -lt 1 ]]
