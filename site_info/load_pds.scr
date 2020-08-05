@@ -1,7 +1,17 @@
-
+color Name D green
+color Resname GLY red
+color Resname ARG blue
+color Resname LYS blue
+color Resname THR green
+color Resname PRO green
+color Resname SER green
+color Resname PHE orange
+color Resname TYR orange
+color Resname TRP orange
 mol new 1FFT/0/0/frames/1.pdb type pdb
 set molID 0
-cg_bonds -molid 0 -tpr tprs/1FFT.bonds.tpr 
+mol rename 0 {1FFT 0}
+mol off 0
 mol addfile 1FFT/0/0/frames/2.pdb type pdb
 mol addfile 1FFT/0/0/frames/3.pdb type pdb
 mol addfile 1FFT/0/0/frames/4.pdb type pdb
@@ -11,12 +21,25 @@ mol addfile 1FFT/0/0/frames/7.pdb type pdb
 mol addfile 1FFT/0/0/frames/8.pdb type pdb
 mol addfile 1FFT/0/0/frames/9.pdb type pdb
 mol addfile 1FFT/0/0/frames/10.pdb type pdb
-mol modselect 1  resid 1 2 3 4 5 6 8 9 92 96 392 393 394 395 466 469 470 474 495 496 497 498 499 mol modstyle 1  VDW 1.000000 16.000000
-mol modcolor 1  ResType
+mol modselect 0 0 name BB
+mol modstyle 0 0 QuickSurf 1.000000 0.500000 1.000000 1.000000
+mol modcolor 0 0 ColorID 6
+mol material AOChalky
+mol addrep 0
+mol modselect 1 0 resname CARD
+mol modstyle 1 0 VDW 1.500000 12.000000 
+mol modcolor 1 0 Name
+mol modmaterial 1 0 AOEdgy
+mol addrep 0
+mol modstyle 2 0 VDW 1.500000 12.000000
+mol modcolor 2 0 ResType
+mol modmaterial 2 0 AOEdgy
+mol modselect 2 0 resid 1 2 4 5 393 466 469 470 498 499 
 
 mol new 1FFT/1/0/frames/1.pdb type pdb
 set molID 1
-cg_bonds -molid 1 -tpr tprs/1FFT.bonds.tpr 
+mol rename 1 {1FFT 1}
+mol off 1
 mol addfile 1FFT/1/0/frames/2.pdb type pdb
 mol addfile 1FFT/1/0/frames/3.pdb type pdb
 mol addfile 1FFT/1/0/frames/4.pdb type pdb
@@ -26,12 +49,25 @@ mol addfile 1FFT/1/0/frames/7.pdb type pdb
 mol addfile 1FFT/1/0/frames/8.pdb type pdb
 mol addfile 1FFT/1/0/frames/9.pdb type pdb
 mol addfile 1FFT/1/0/frames/10.pdb type pdb
-mol modselect 1  resid 19 20 21 23 24 27 28 40 41 42 47 48 50 51 55 105 106 109 110 111 112 114 mol modstyle 1  VDW 1.000000 16.000000
-mol modcolor 1  ResType
+mol modselect 0 1 name BB
+mol modstyle 0 1 QuickSurf 1.000000 0.500000 1.000000 1.000000
+mol modcolor 0 1 ColorID 6
+mol material AOChalky
+mol addrep 1
+mol modselect 1 1 resname CARD
+mol modstyle 1 1 VDW 1.500000 12.000000 
+mol modcolor 1 1 Name
+mol modmaterial 1 1 AOEdgy
+mol addrep 1
+mol modstyle 2 1 VDW 1.500000 12.000000
+mol modcolor 2 1 ResType
+mol modmaterial 2 1 AOEdgy
+mol modselect 2 1 resid 20 21 23 24 27 28 40 41 47 48 50 51 106 109 110 111 112 
 
 mol new 1FFT/11/0/frames/1.pdb type pdb
 set molID 2
-cg_bonds -molid 2 -tpr tprs/1FFT.bonds.tpr 
+mol rename 2 {1FFT 11}
+mol off 2
 mol addfile 1FFT/11/0/frames/2.pdb type pdb
 mol addfile 1FFT/11/0/frames/3.pdb type pdb
 mol addfile 1FFT/11/0/frames/4.pdb type pdb
@@ -41,12 +77,25 @@ mol addfile 1FFT/11/0/frames/7.pdb type pdb
 mol addfile 1FFT/11/0/frames/8.pdb type pdb
 mol addfile 1FFT/11/0/frames/9.pdb type pdb
 mol addfile 1FFT/11/0/frames/10.pdb type pdb
-mol modselect 1  resid 290 291 292 295 296 512 513 515 516 517 519 520 523 580 581 582 583 584 585 586 587 588 590 mol modstyle 1  VDW 1.000000 16.000000
-mol modcolor 1  ResType
+mol modselect 0 2 name BB
+mol modstyle 0 2 QuickSurf 1.000000 0.500000 1.000000 1.000000
+mol modcolor 0 2 ColorID 6
+mol material AOChalky
+mol addrep 2
+mol modselect 1 2 resname CARD
+mol modstyle 1 2 VDW 1.500000 12.000000 
+mol modcolor 1 2 Name
+mol modmaterial 1 2 AOEdgy
+mol addrep 2
+mol modstyle 2 2 VDW 1.500000 12.000000
+mol modcolor 2 2 ResType
+mol modmaterial 2 2 AOEdgy
+mol modselect 2 2 resid 291 292 515 516 519 520 523 580 581 582 583 584 585 586 587 
 
 mol new 1FFT/14/0/frames/1.pdb type pdb
 set molID 3
-cg_bonds -molid 3 -tpr tprs/1FFT.bonds.tpr 
+mol rename 3 {1FFT 14}
+mol off 3
 mol addfile 1FFT/14/0/frames/2.pdb type pdb
 mol addfile 1FFT/14/0/frames/3.pdb type pdb
 mol addfile 1FFT/14/0/frames/4.pdb type pdb
@@ -56,12 +105,25 @@ mol addfile 1FFT/14/0/frames/7.pdb type pdb
 mol addfile 1FFT/14/0/frames/8.pdb type pdb
 mol addfile 1FFT/14/0/frames/9.pdb type pdb
 mol addfile 1FFT/14/0/frames/10.pdb type pdb
-mol modselect 1  resid 770 819 820 821 822 823 824 825 826 827 829 830 831 832 834 837 838 840 841 912 914 918 921 922 925 mol modstyle 1  VDW 1.000000 16.000000
-mol modcolor 1  ResType
+mol modselect 0 3 name BB
+mol modstyle 0 3 QuickSurf 1.000000 0.500000 1.000000 1.000000
+mol modcolor 0 3 ColorID 6
+mol material AOChalky
+mol addrep 3
+mol modselect 1 3 resname CARD
+mol modstyle 1 3 VDW 1.500000 12.000000 
+mol modcolor 1 3 Name
+mol modmaterial 1 3 AOEdgy
+mol addrep 3
+mol modstyle 2 3 VDW 1.500000 12.000000
+mol modcolor 2 3 ResType
+mol modmaterial 2 3 AOEdgy
+mol modselect 2 3 resid 819 820 821 822 823 824 825 826 827 829 830 831 832 834 837 838 840 841 914 918 
 
 mol new 1FFT/17/0/frames/1.pdb type pdb
 set molID 4
-cg_bonds -molid 4 -tpr tprs/1FFT.bonds.tpr 
+mol rename 4 {1FFT 17}
+mol off 4
 mol addfile 1FFT/17/0/frames/2.pdb type pdb
 mol addfile 1FFT/17/0/frames/3.pdb type pdb
 mol addfile 1FFT/17/0/frames/4.pdb type pdb
@@ -71,12 +133,25 @@ mol addfile 1FFT/17/0/frames/7.pdb type pdb
 mol addfile 1FFT/17/0/frames/8.pdb type pdb
 mol addfile 1FFT/17/0/frames/9.pdb type pdb
 mol addfile 1FFT/17/0/frames/10.pdb type pdb
-mol modselect 1  resid 835 836 839 842 901 902 905 906 mol modstyle 1  VDW 1.000000 16.000000
-mol modcolor 1  ResType
+mol modselect 0 4 name BB
+mol modstyle 0 4 QuickSurf 1.000000 0.500000 1.000000 1.000000
+mol modcolor 0 4 ColorID 6
+mol material AOChalky
+mol addrep 4
+mol modselect 1 4 resname CARD
+mol modstyle 1 4 VDW 1.500000 12.000000 
+mol modcolor 1 4 Name
+mol modmaterial 1 4 AOEdgy
+mol addrep 4
+mol modstyle 2 4 VDW 1.500000 12.000000
+mol modcolor 2 4 ResType
+mol modmaterial 2 4 AOEdgy
+mol modselect 2 4 resid 835 836 839 901 902 905 906 
 
 mol new 1FFT/4/0/frames/1.pdb type pdb
 set molID 5
-cg_bonds -molid 5 -tpr tprs/1FFT.bonds.tpr 
+mol rename 5 {1FFT 4}
+mol off 5
 mol addfile 1FFT/4/0/frames/2.pdb type pdb
 mol addfile 1FFT/4/0/frames/3.pdb type pdb
 mol addfile 1FFT/4/0/frames/4.pdb type pdb
@@ -86,12 +161,25 @@ mol addfile 1FFT/4/0/frames/7.pdb type pdb
 mol addfile 1FFT/4/0/frames/8.pdb type pdb
 mol addfile 1FFT/4/0/frames/9.pdb type pdb
 mol addfile 1FFT/4/0/frames/10.pdb type pdb
-mol modselect 1  resid 87 88 89 162 163 165 169 170 171 759 760 761 762 763 764 765 766 767 899 900 903 904 907 908 909 910 913 915 916 mol modstyle 1  VDW 1.000000 16.000000
-mol modcolor 1  ResType
+mol modselect 0 5 name BB
+mol modstyle 0 5 QuickSurf 1.000000 0.500000 1.000000 1.000000
+mol modcolor 0 5 ColorID 6
+mol material AOChalky
+mol addrep 5
+mol modselect 1 5 resname CARD
+mol modstyle 1 5 VDW 1.500000 12.000000 
+mol modcolor 1 5 Name
+mol modmaterial 1 5 AOEdgy
+mol addrep 5
+mol modstyle 2 5 VDW 1.500000 12.000000
+mol modcolor 2 5 ResType
+mol modmaterial 2 5 AOEdgy
+mol modselect 2 5 resid 765 766 900 903 904 907 908 909 915 916 
 
 mol new 1FFT/6/0/frames/1.pdb type pdb
 set molID 6
-cg_bonds -molid 6 -tpr tprs/1FFT.bonds.tpr 
+mol rename 6 {1FFT 6}
+mol off 6
 mol addfile 1FFT/6/0/frames/2.pdb type pdb
 mol addfile 1FFT/6/0/frames/3.pdb type pdb
 mol addfile 1FFT/6/0/frames/4.pdb type pdb
@@ -101,12 +189,25 @@ mol addfile 1FFT/6/0/frames/7.pdb type pdb
 mol addfile 1FFT/6/0/frames/8.pdb type pdb
 mol addfile 1FFT/6/0/frames/9.pdb type pdb
 mol addfile 1FFT/6/0/frames/10.pdb type pdb
-mol modselect 1  resid 172 261 262 263 264 265 266 267 310 559 560 561 562 563 564 565 566 568 569 mol modstyle 1  VDW 1.000000 16.000000
-mol modcolor 1  ResType
+mol modselect 0 6 name BB
+mol modstyle 0 6 QuickSurf 1.000000 0.500000 1.000000 1.000000
+mol modcolor 0 6 ColorID 6
+mol material AOChalky
+mol addrep 6
+mol modselect 1 6 resname CARD
+mol modstyle 1 6 VDW 1.500000 12.000000 
+mol modcolor 1 6 Name
+mol modmaterial 1 6 AOEdgy
+mol addrep 6
+mol modstyle 2 6 VDW 1.500000 12.000000
+mol modcolor 2 6 ResType
+mol modmaterial 2 6 AOEdgy
+mol modselect 2 6 resid 263 264 267 559 560 561 562 563 564 565 566 568 
 
 mol new 1FFT/9/0/frames/1.pdb type pdb
 set molID 7
-cg_bonds -molid 7 -tpr tprs/1FFT.bonds.tpr 
+mol rename 7 {1FFT 9}
+mol off 7
 mol addfile 1FFT/9/0/frames/2.pdb type pdb
 mol addfile 1FFT/9/0/frames/3.pdb type pdb
 mol addfile 1FFT/9/0/frames/4.pdb type pdb
@@ -116,5 +217,18 @@ mol addfile 1FFT/9/0/frames/7.pdb type pdb
 mol addfile 1FFT/9/0/frames/8.pdb type pdb
 mol addfile 1FFT/9/0/frames/9.pdb type pdb
 mol addfile 1FFT/9/0/frames/10.pdb type pdb
-mol modselect 1  resid 324 325 326 327 328 331 332 398 399 400 401 403 404 405 406 407 460 463 464 467 468 471 472 473 540 543 544 547 548 549 550 mol modstyle 1  VDW 1.000000 16.000000
-mol modcolor 1  ResType
+mol modselect 0 7 name BB
+mol modstyle 0 7 QuickSurf 1.000000 0.500000 1.000000 1.000000
+mol modcolor 0 7 ColorID 6
+mol material AOChalky
+mol addrep 7
+mol modselect 1 7 resname CARD
+mol modstyle 1 7 VDW 1.500000 12.000000 
+mol modcolor 1 7 Name
+mol modmaterial 1 7 AOEdgy
+mol addrep 7
+mol modstyle 2 7 VDW 1.500000 12.000000
+mol modcolor 2 7 ResType
+mol modmaterial 2 7 AOEdgy
+mol modselect 2 7 resid 324 325 326 327 328 331 398 399 400 401 403 404 407 471 472 543 544 547 548 549 550 
+
