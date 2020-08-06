@@ -1,8 +1,8 @@
 ;
 ;	File 'mdout.mdp' was generated
 ;	By user: bioc1535 (13739)
-;	On host: ras
-;	At date: Wed Aug  5 17:02:24 2020
+;	On host: chez
+;	At date: Thu Aug  6 10:00:16 2020
 ;
 ;	Created by:
 ;	                     :-) GROMACS - gmx grompp, 2019.4 (-:
@@ -11,7 +11,7 @@
 ;	Data prefix:  /sbcb/packages/opt/Linux_x86_64/gromacs/2019.4_GCC6.2_CUDA9.2.AVX2
 ;	Working dir:  /sansom/s156a/bioc1535/CDL_site_ML
 ;	Command line:
-;	  gmx grompp -f em_FEP_0.mdp -c /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/0//eq.gro -r /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/0//eq.gro -p /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/0//topol.top -n /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/0//sys.ndx
+;	  gmx grompp -f /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/FEP_data/1FFT/0/0/EM//EM_20/em_FEP_20.mdp -c /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/0//frames/4.pdb -r /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/0//frames/4.pdb -p /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/0//topol.top -n /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/0//sys.ndx -o /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/FEP_data/1FFT/0/0/EM//EM_20/em_4.tpr -maxwarn 3
 
 ; VARIOUS PREPROCESSING OPTIONS
 ; Preprocessor information: use cpp syntax.
@@ -266,7 +266,7 @@ couple-lambda0           = vdw-q
 couple-lambda1           = vdw-q
 couple-intramol          = no
 init-lambda              = -1
-init_lambda_state        = 0
+init_lambda_state        = 20
 delta_lambda             = 0
 nstdhdl                  = 100
 fep-lambdas              = 
