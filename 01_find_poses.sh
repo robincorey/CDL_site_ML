@@ -3,6 +3,7 @@
 # data dir
 CD=/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses
 SETUP=/sansom/s156a/bioc1535/Ecoli_patch/full_complement/chosen
+SCRIPT=/sansom/s156a/bioc1535/CDL_site_ML
 
 # functions
 build_system () {
@@ -95,20 +96,21 @@ do
 				out_dir=$CD/Sites_for_ML/$pdb/$site/$i
 				mkdir -p $out_dir
 				mkdir -p $out_dir/out_files
-				build_system $pdb $site $i $out_dir
-				build_topology $pdb $site $i $out_dir
-                                check_site $pdb $site $i $out_dir
+				#build_system $pdb $site $i $out_dir
+				#build_topology $pdb $site $i $out_dir
+                                #check_site $pdb $site $i $out_dir
 				dist_from_site=`awk -F '.' '{print $1}' $out_dir/dist_from_site`
-				if [[ $dist_from_site -lt 1 ]]
+				if [[ $dist_from_site -lt 1 ]] 
 				then
-					echo $pdb $site $i >> site_info/chosen.txt
-					equil_system $pdb $site $i $out_dir
-					get_frames $pdb $site $i $out_dir
+					echo doing $pdb $site $i
+					#echo $pdb $site $i >> site_info/chosen.txt
+					#equil_system $pdb $site $i $out_dir
+					#get_frames $pdb $site $i $out_dir
 				fi
 				rm -f $out_dir/*#*
+				rm -f $SCRIPT/*step*pdb* *mdp
 			done
 		fi
 	done
 done
 
-rm -f step*pdb *mdp

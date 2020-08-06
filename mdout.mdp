@@ -1,8 +1,8 @@
 ;
 ;	File 'mdout.mdp' was generated
 ;	By user: bioc1535 (13739)
-;	On host: chez
-;	At date: Thu Aug  6 10:00:16 2020
+;	On host: noggin
+;	At date: Thu Aug  6 12:01:04 2020
 ;
 ;	Created by:
 ;	                     :-) GROMACS - gmx grompp, 2019.4 (-:
@@ -11,21 +11,21 @@
 ;	Data prefix:  /sbcb/packages/opt/Linux_x86_64/gromacs/2019.4_GCC6.2_CUDA9.2.AVX2
 ;	Working dir:  /sansom/s156a/bioc1535/CDL_site_ML
 ;	Command line:
-;	  gmx grompp -f /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/FEP_data/1FFT/0/0/EM//EM_20/em_FEP_20.mdp -c /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/0//frames/4.pdb -r /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/0//frames/4.pdb -p /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/0//topol.top -n /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/0//sys.ndx -o /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/FEP_data/1FFT/0/0/EM//EM_20/em_4.tpr -maxwarn 3
+;	  gmx grompp -f /sansom/s137/bioc1535/Desktop/CG_KIT/MDPs/eq_2019.mdp -c /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AJI/14/1/em.gro -r /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AJI/14/1/em.gro -p /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AJI/14/1/topol.top -n /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AJI/14/1/sys.ndx -o /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5AJI/14/1/eq
 
 ; VARIOUS PREPROCESSING OPTIONS
 ; Preprocessor information: use cpp syntax.
 ; e.g.: -I/home/joe/doe -I/home/mary/roe
 include                  = 
 ; e.g.: -DPOSRES -DFLEXIBLE (note these variable names are case sensitive)
-define                   = 
+define                   = -DPOSRES
 
 ; RUN CONTROL PARAMETERS
-integrator               = steep
+integrator               = md
 ; Start time and timestep in ps
-tinit                    = 0
+tinit                    = 0.0
 dt                       = 0.02
-nsteps                   = 5000
+nsteps                   = 500000000
 ; For exact run continuation or redoing part of a run
 init-step                = 0
 ; Part index is updated automatically on checkpointing (keeps files separate)
@@ -59,16 +59,16 @@ rtpi                     = 0.05
 
 ; OUTPUT CONTROL OPTIONS
 ; Output frequency for coords (x), velocities (v) and forces (f)
-nstxout                  = 0
-nstvout                  = 0
-nstfout                  = 0
+nstxout                  = 1000000
+nstvout                  = 1000000
+nstfout                  = 1000000
 ; Output frequency for energies to log file and energy file
-nstlog                   = 100
+nstlog                   = 10000
 nstcalcenergy            = 100
-nstenergy                = 1000
+nstenergy                = 10000
 ; Output frequency and precision for .xtc file
-nstxout-compressed       = 100
-compressed-x-precision   = 100
+nstxout-compressed       = 10000
+compressed-x-precision   = 10000
 ; This selects the subset of atoms for the compressed
 ; trajectory file. You can select multiple groups. By
 ; default, all atoms will be written.
@@ -82,7 +82,7 @@ cutoff-scheme            = verlet
 ; nblist update frequency
 nstlist                  = 10
 ; ns algorithm (simple or grid)
-ns-type                  = Grid
+ns_type                  = grid
 ; Periodic boundary conditions: xyz, no, xy
 pbc                      = xyz
 periodic-molecules       = no
@@ -90,24 +90,24 @@ periodic-molecules       = no
 ; a value of -1 means: use rlist
 verlet-buffer-tolerance  = 0.005
 ; nblist cut-off        
-rlist                    = 1.4
+rlist                    = 1
 ; long-range cut-off for switched potentials
 
 ; OPTIONS FOR ELECTROSTATICS AND VDW
 ; Method for doing electrostatics
-coulombtype              = cut-off
-coulomb-modifier         = Potential-shift-Verlet
-rcoulomb-switch          = 0
-rcoulomb                 = 1.2
+coulombtype              = Reaction_field
+coulomb-modifier         = Potential-shift
+rcoulomb_switch          = 0.0
+rcoulomb                 = 1.1
 ; Relative dielectric constant for the medium and the reaction field
 epsilon_r                = 15
-epsilon-rf               = 0
+epsilon_rf               = 0
 ; Method for doing Van der Waals
-vdw-type                 = cut-off
-vdw-modifier             = Potential-shift-Verlet
+vdw_type                 = cutoff
+vdw-modifier             = Potential-shift
 ; cut-off lengths       
-rvdw-switch              = 0.9
-rvdw                     = 1.2
+rvdw_switch              = 0.9
+rvdw                     = 1.1
 ; Apply long range dispersion corrections for Energy and Pressure
 DispCorr                 = No
 ; Extension of the potential lookup tables beyond the cut-off
@@ -138,18 +138,18 @@ print-nose-hoover-chain-variables = no
 ; Groups to couple separately
 tc-grps                  = PROTEIN LIPID SOL_ION
 ; Time constant (ps) and reference temperature (K)
-tau-t                    = 1.0 1.0 1.0
-ref-t                    = 323 323 323
+tau_t                    = 1.0 1.0 1.0
+ref_t                    = 323 323 323
 ; pressure coupling     
-pcoupl                   = No
-pcoupltype               = Isotropic
+Pcoupl                   = Berendsen
+Pcoupltype               = semiisotropic
 nstpcouple               = -1
 ; Time constant (ps), compressibility (1/bar) and reference P (bar)
-tau-p                    = 1
-compressibility          = 
-ref-p                    = 
+tau_p                    = 4.0
+compressibility          = 5e-6 5e-6
+ref_p                    = 1.0 1.0
 ; Scaling of reference coordinates, No, All or COM
-refcoord-scaling         = No
+refcoord_scaling         = com
 
 ; OPTIONS FOR QMMM calculations
 QMMM                     = no
@@ -187,14 +187,14 @@ annealing-time           =
 annealing-temp           = 
 
 ; GENERATE VELOCITIES FOR STARTUP RUN
-gen-vel                  = no
-gen-temp                 = 300
-gen-seed                 = -1
+gen_vel                  = yes
+gen_temp                 = 323
+gen_seed                 = -1
 
 ; OPTIONS FOR BONDS    
 constraints              = none
 ; Type of constraint algorithm
-constraint-algorithm     = Lincs
+constraint_algorithm     = Lincs
 ; Do not constrain the start configuration
 continuation             = no
 ; Use successive overrelaxation to reduce the number of shake iterations
@@ -202,14 +202,14 @@ Shake-SOR                = no
 ; Relative tolerance of shake
 shake-tol                = 0.0001
 ; Highest order in the expansion of the constraint coupling matrix
-lincs-order              = 4
+lincs_order              = 4
 ; Number of iterations in the final step of LINCS. 1 is fine for
 ; normal simulations, but use 2 to conserve energy in NVE runs.
 ; For energy minimization with constraints it should be 4 to 8.
 lincs-iter               = 1
 ; Lincs will write a warning to the stderr if in one step a bond
 ; rotates over more degrees than
-lincs-warnangle          = 30
+lincs_warnangle          = 30
 ; Convert harmonic bonds to morse potentials
 morse                    = no
 
@@ -260,30 +260,30 @@ orire-fitgrp             =
 nstorireout              = 100
 
 ; Free energy variables
-free_energy              = yes
+free-energy              = no
 couple-moltype           = 
 couple-lambda0           = vdw-q
 couple-lambda1           = vdw-q
 couple-intramol          = no
 init-lambda              = -1
-init_lambda_state        = 20
-delta_lambda             = 0
-nstdhdl                  = 100
+init-lambda-state        = -1
+delta-lambda             = 0
+nstdhdl                  = 50
 fep-lambdas              = 
 mass-lambdas             = 
-coul_lambdas             = 0.00 0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40 0.45 0.50 0.55 0.60 0.65 0.70 0.75 0.80 0.85 0.90 0.95 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00
-vdw_lambdas              = 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40 0.45 0.50 0.55 0.60 0.65 0.70 0.75 0.80 0.85 0.90 0.95 1.00
+coul-lambdas             = 
+vdw-lambdas              = 
 bonded-lambdas           = 
 restraint-lambdas        = 
 temperature-lambdas      = 
-calc-lambda-neighbors    = -1
+calc-lambda-neighbors    = 1
 init-lambda-weights      = 
 dhdl-print-energy        = no
-sc-alpha                 = 0.5
+sc-alpha                 = 0
 sc-power                 = 1
 sc-r-power               = 6
 sc-sigma                 = 0.3
-sc-coul                  = yes
+sc-coul                  = no
 separate-dhdl-file       = yes
 dhdl-derivatives         = yes
 dh_hist_size             = 0
