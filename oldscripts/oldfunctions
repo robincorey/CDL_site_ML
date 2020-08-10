@@ -1,0 +1,27 @@
+# this section gets the distance from the card to the site - and filters less than 1 nm
+check_site () {
+txt_file=$CD/Sites_new/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
+site_occ=`sed -n "/Binding site $2$/,/^$/p" $txt_file | grep "BS Lipid Occupancy" | awk '{print $4}'`
+cutoff=`echo "scale=4; $site_occ / 2" | bc`
+resnum=`sed -n "/Binding site $2$/,/^$/p" $txt_file | tail -n+15 | awk -v var=$cutoff '$6>var' | awk '{print $1}' | tr -d [[:alpha:]] | sed ':a;N;$!ba;s/\n/ /g'`
+out=$4
+echo -e "site_occ $site_occ\ncutoff $cutoff\nresnum $resnum" > $out/site_specs
+rm -f $out/ndxs
+set -- "$resnum"
+for res in $@
+do
+        echo -n "ri$((res-1)) " >>  $out/ndxs
+done
+sed 's/ ri/ | ri/g' $out/ndxs -i
+echo "
+aGL0 | aPO1 | aPO2
+q" >> $out/ndxs
+gmx make_ndx -f $out/em.gro -o $out/site.ndx < $out/ndxs >& $out/out_files/out_sitendx
+site_ndx=`grep '\[ r_' $out/site.ndx | sed 's/\[//g' | sed 's/\]//g'`
+sed "s/$site_ndx/ Site /g" $out/site.ndx -i
+card_ndx=`grep '\[ GL0' $out/site.ndx | sed 's/\[//g' | sed 's/\]//g'`
+sed "s/$card_ndx/ CARD_HG /g" $out/site.ndx -i
+gmx distance -f $out/em.gro -s $out/em.tpr -oxyz $out/site_CL.xvg -select 'cog of group "Site" plus cog of group "CARD_HG"' -rmpbc no -pbc no -n $out/site.ndx >& $out/out_files/out_dist
+read -r t x y z <<<$(tail -n 1 $out/site_CL.xvg)
+echo "scale = 4; sqrt($x^2 + $y^2)" | bc > $out/dist_from_site
+}

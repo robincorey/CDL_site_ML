@@ -16,7 +16,7 @@ python $CG/insane.py -f $4/pose.gro -o $4/$1.$2.$3.mem.gro -x $x -y $y -z $z -l 
 }
 
 plumed_dat () {
-txt_file=$CD/Sites_new/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
+txt_file=$CD/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
 site_occ=`sed -n "/Binding site $2$/,/^$/p" $txt_file | grep "BS Lipid Occupancy" | awk '{print $4}'`
 cutoff=`echo "scale=4; $site_occ / 2" | bc`
 resnum=`sed -n "/Binding site $2$/,/^$/p" $txt_file | tail -n+15 | awk -v var=$cutoff '$6>var' | awk '{print $1}' | tr -d [[:alpha:]] | sed ':a;N;$!ba;s/\n/ /g'`
@@ -39,6 +39,7 @@ done
 sed 's/#LIP#//g' $out/dist.dat -i 
 sed 's/#PROT#//g' $out/dist.dat -i
 sed 's/,$//g' $out/dist.dat -i 
+sed "s-#DIR#-$out-g" $out/dist.dat -i
 }
 
 build_topology () {
@@ -63,7 +64,7 @@ sed 's/CARD_POPE/LIPID/g' $4/sys.ndx -i
 sed 's/WN_ION/SOL_ION/g' $4/sys.ndx -i
 sed 's/#UPPER/UPPER/g' $4/dist.dat -i
 gmx grompp -f $CG/MDPs/eq_2019.mdp -c $4/em.gro -r $4/em.gro -p $4/topol.top -n $4/sys.ndx -o $4/eq >& $4/out_files/out_grompp2
-gmx mdrun -v -deffnm $4/eq -nsteps 500000 -pin on -pinoffset 0 -ntomp 6 -ntmpi 1 -plumed $4/dist.dat >& $4/out_files/out_eq 
+gmx mdrun -v -deffnm $4/eq -nsteps 5000000 -pin on -pinoffset 0 -ntomp 6 -ntmpi 1 -plumed $4/dist.dat >& $4/out_files/out_eq 
 }
 
 check_eq () {
@@ -85,11 +86,10 @@ mkdir -p $CD/Sites_for_ML
 rm -f site_info/chosen.txt
 
 # loop through pdbs and extract sites
-#for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6 5MRW 5AZC 1Q16 2QFI 2IC8 1RC2 1IWG #2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
-for pdb in 1FFT
+for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6 5MRW 5AZC 1Q16 2QFI 2IC8 1RC2 1IWG #2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
 do
 	mkdir -p $CD/Sites_for_ML/$pdb
-	site_dir=$CD/Sites_new/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD
+	site_dir=$CD/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD
 	# gets the range of sites
 	total=`(cd $site_dir/Binding_Poses && ls *gro) | tr -d [[:alpha:]]. | awk -F '_' '{print $1}' | sort -u | wc -l`
 	for site in `seq 0 $((total-1))`
@@ -102,7 +102,6 @@ do
 				out_dir=$CD/Sites_for_ML/$pdb/$site/$i
 				if ! ls $CD/Sites_for_ML/$pdb/$site/*/eq.gro 1> /dev/null 2>&1
 				then
-					echo starting $pdb $site $i
 					mkdir -p $out_dir
 					mkdir -p $out_dir/out_files
 					if [[ ! -f $out_dir/em.gro ]] 
@@ -112,18 +111,15 @@ do
 						build_topology $pdb $site $i $out_dir
 					fi
 					dist_from_site=`awk -F '.' '{print $1}' $out_dir/dist_from_site`
-					exit 0
 					if [[ $dist_from_site -lt 1 ]] 
 					then
 						echo doing $pdb $site $i
 						echo $pdb $site $i >> site_info/chosen.txt
 						equil_system $pdb $site $i $out_dir
-					#	check_eq $pdb $site $i $out_dir
-                                        #        get_frames $pdb $site $i $out_dir
+                                                get_frames $pdb $site $i $out_dir
 					fi
 					rm -f $out_dir/*#*
 					rm -f $SCRIPT/*step*pdb* *mdp
-				exit 0
 				fi
 			done
 		fi

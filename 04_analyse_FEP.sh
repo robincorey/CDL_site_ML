@@ -12,7 +12,7 @@ tail -n 1 $1/Analysis_$2/results.txt | awk '{print $(NF-2)}' >> $DATA_DIR/FEP_da
 }
 
 get_other_values () {
-site_dir=$DATA_DIR/Sites_new/$1/lipid_interactions/Interaction_CARD/Binding_Sites_CARD
+site_dir=$DATA_DIR/PyLipID_poses/$1/lipid_interactions/Interaction_CARD/Binding_Sites_CARD
 read -r koff koff_err <<<$(grep -A10 "Binding site $2$" $site_dir/BindingSites_Info_CARD.txt | grep "BS koff Bootstrap" | awk '{print $4" "$6}') 
 occ=`grep -A10 "Binding site $2$" $site_dir/BindingSites_Info_CARD.txt | grep "BS Lipid Occupancy" | awk '{print $4}'`
 fepval=`tail -n+2 $DATA_DIR/FEP_data/energies/$1_$2_$3.txt | awk '{sum+=$1} END {print 93.96-(sum/NR)}'`

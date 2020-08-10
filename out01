@@ -1,0 +1,12 @@
+starting 1KQF 7 0
+doing 1KQF 7 0
+starting 1KQF 8 0
+starting 1KQF 8 1
+doing 1KQF 8 1
+./01_find_poses.sh: line 67: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KQF/8/1/out_files/out_mindist: No such file or directory
+./01_find_poses.sh: line 69: /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1KQF/8/1/out_files/out_frame_: No such file or directory
+starting 1KQF 8 2
+doing 1KQF 8 2
+starting 1KQF 14 0
+doing 1KQF 14 0
+starting 1KQF 14 1

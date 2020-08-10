@@ -50,13 +50,19 @@ dependendcy on 'Alchemical analysis'
 04_analyse_FEP.sh
 ```
 
-STEP 5: prepare data for ML
-Gathers the residues in contact with the lipid at lamda 0 and the energy of the site
+STEP 5
+Do additional FEP analyses, include Ala scan
 ```
-05_prep_ML.sh
+05_ala_scan.sh
 ```
 
-STEP 6: use sites to train a CNN-based scoring function
+STEP 6: prepare data for ML
+Gathers the residues in contact with the lipid at lamda 0 and the energy of the site
 ```
-06_training_data.sh
+06_prep_ML.sh
+```
+
+STEP 7: use sites to train a CNN-based scoring function
+```
+07_training_data.sh
 ```
