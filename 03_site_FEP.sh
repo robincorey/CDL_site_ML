@@ -24,7 +24,7 @@ do
 		sed "/^TNA/a TNAP 2" $4/topol_FEP.top -i
 		for rep in {1..10}
 		do
-			gmx grompp -f $build_dir/em_FEP_${i}.mdp -c $4/frames/$rep.pdb -r $4/frames/$rep.pdb -p $4/topol_FEP.top -n $4/sys.ndx -o $build_dir/em_$rep.tpr -maxwarn 3 >& $build_dir/out_files/out1
+			gmx grompp -f $build_dir/em_FEP_${i}.mdp -c $4/frames/eq$rep.pdb -r $4/frames/eq$rep.pdb -p $4/topol_FEP.top -n $4/sys.ndx -o $build_dir/em_$rep.tpr -maxwarn 3 >& $build_dir/out_files/out1
                		gmx mdrun -v -deffnm $build_dir/em_$rep >& $build_dir/out_files/out2
 		done
         fi
@@ -46,8 +46,7 @@ cp $FEP/run.sh $data_dir/run.sh
 }
 
 # loop through PDBs
-#for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6 5MRW 5AZC 1Q16 2QFI 2IC8 1RC2 1IWG 2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
-for pdb in 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
+for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6 5MRW 5AZC 1Q16 2QFI 2IC8 1RC2 1IWG 2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
 do
 	for site in 0 `ls $SITE/Sites_for_ML/$pdb`
         do
@@ -56,10 +55,8 @@ do
 		build_dir=$SITE/Sites_for_ML/$pdb/$site/$i/
                 if [[ -f $build_dir/eq.gro ]]
                 then
-			if [[ ! `ls -d $SITE/FEP_data/Data/${pdb}_${site}_* 2>/dev/null` ]]
-			then
+		#	if [[ ! `ls -d $SITE/FEP_data/Data/${pdb}_${site}_* 2>/dev/null` ]]
                 		prep_FEP $pdb $site $i $build_dir
-			fi
 		fi
 		done
         done

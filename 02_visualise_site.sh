@@ -5,13 +5,13 @@
 SITE=/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses
 
 make_load_file () {
-echo "mol new $1/$2/$4/frames/1.pdb type pdb
+echo "mol new $1/$2/$4/frames/eq1.pdb type pdb
 set molID $3
 mol rename $3 {$1 $2}
 mol off $3" >> site_info/load_pds.scr
 for i in {2..10}
 do
-        echo "mol addfile $1/$2/$4/frames/$i.pdb type pdb" >> site_info/load_pds.scr
+        echo "mol addfile $1/$2/$4/frames/eq$i.pdb type pdb" >> site_info/load_pds.scr
 done
 echo -n "mol modselect 0 $3 name BB
 mol modstyle 0 $3 QuickSurf 1.000000 0.500000 1.000000 1.000000
@@ -51,7 +51,7 @@ do
 	rm -f site_info/site_info_$pdb.txt
         for site in `ls $SITE/Sites_for_ML/$pdb`
         do
-		for i in {0..9}
+		for i in {1..9}
 		do
 		if [[ -f $SITE/Sites_for_ML/$pdb/$site/$i/eq.gro ]]
 		then

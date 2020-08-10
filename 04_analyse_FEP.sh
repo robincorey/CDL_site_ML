@@ -15,19 +15,20 @@ get_other_values () {
 site_dir=$DATA_DIR/Sites_new/$1/lipid_interactions/Interaction_CARD/Binding_Sites_CARD
 read -r koff koff_err <<<$(grep -A10 "Binding site $2$" $site_dir/BindingSites_Info_CARD.txt | grep "BS koff Bootstrap" | awk '{print $4" "$6}') 
 occ=`grep -A10 "Binding site $2$" $site_dir/BindingSites_Info_CARD.txt | grep "BS Lipid Occupancy" | awk '{print $4}'`
-fep=`tail -n+2 $DATA_DIR/FEP_data/energies/$1_$2_$3.txt | awk '{sum+=$1} END {print sum/NR}'`
+fepval=`tail -n+2 $DATA_DIR/FEP_data/energies/$1_$2_$3.txt | awk '{sum+=$1} END {print 93.96-(sum/NR)}'`
 fep_error=`tail -n+2 $DATA_DIR/FEP_data/energies/$1_$2_$3.txt | awk '{sum+=$1;a[NR]=$1}END{for(i in a)y+=(a[i]-(sum/NR))^2;print sqrt(y/(NR-1))}'`
-echo -e "$fep $fep_error $koff $koff_err $occ 0 " >> $DATA_DIR/FEP_data/energies/comparison.txt 
+echo -e "$fepval $fep_error $koff $koff_err $occ 0 " >> $DATA_DIR/FEP_data/energies/comparison.txt 
 }
 
 mkdir -p $DATA_DIR/FEP_data/energies
-echo "dur occ fep" > $DATA_DIR/FEP_data/energies/comparison.txt
+echo "fep fep_error koff koff_error occ" > $DATA_DIR/FEP_data/energies/comparison.txt
 
-for i in `ls $DATA_DIR/FEP_data/Data`
+for i in `ls $DATA_DIR/FEP_data/Data | grep -v -e old -e longer`
 do
 	fep=$DATA_DIR/FEP_data/Data/$i/Data
 	if [[ -d $fep ]]
 	then
+		echo $i
 		echo $i > $DATA_DIR/FEP_data/energies/$i.txt
 		for rep in {1..10}
 		do

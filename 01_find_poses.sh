@@ -5,11 +5,40 @@ CD=/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses
 SETUP=/sansom/s156a/bioc1535/Ecoli_patch/full_complement/chosen
 SCRIPT=/sansom/s156a/bioc1535/CDL_site_ML
 
+module load ubuntu-18/gromacs/2018.6_AVX2_plumed-2.4.4
+
 # functions
+
 build_system () {
 gmx editconf -f $site_dir/Binding_Poses/BSid$2_No$i.gro -o $4/pose.gro -d 2 >& $4/out_files/out_edc1
 read -r x y z <<<$(tail -n 1 $4/pose.gro)
 python $CG/insane.py -f $4/pose.gro -o $4/$1.$2.$3.mem.gro -x $x -y $y -z $z -l POPE:100 -sol W -p $4/temp.top -center >& $4/out_files/out_mem
+}
+
+plumed_dat () {
+txt_file=$CD/Sites_new/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
+site_occ=`sed -n "/Binding site $2$/,/^$/p" $txt_file | grep "BS Lipid Occupancy" | awk '{print $4}'`
+cutoff=`echo "scale=4; $site_occ / 2" | bc`
+resnum=`sed -n "/Binding site $2$/,/^$/p" $txt_file | tail -n+15 | awk -v var=$cutoff '$6>var' | awk '{print $1}' | tr -d [[:alpha:]] | sed ':a;N;$!ba;s/\n/ /g'`
+file=$1.$2.$3
+out=$4
+echo -e "site_occ $site_occ\ncutoff $cutoff\nresnum $resnum" > $out/site_specs
+rm -f $out/ndxs
+cp dist.dat $4/dist.dat
+set -- "$resnum"
+for res in $@
+do
+	num=`grep " $((res-1))[[:alpha:]]" $out/$file.mem.gro | grep BB | tr -d '[:alpha:]' | awk '{print $2}'`
+	sed "s/#PROT#/#PROT#$num,/g" $out/dist.dat -i
+done
+for bead in GL0 PO1 PO2
+do
+	num=`grep $bead $out/$file.mem.gro | tr -d '[:alpha:]' | awk '{print $3}'`
+	sed "s/#LIP#/#LIP#$num,/g" $out/dist.dat -i
+done
+sed 's/#LIP#//g' $out/dist.dat -i 
+sed 's/#PROT#//g' $out/dist.dat -i
+sed 's/,$//g' $out/dist.dat -i 
 }
 
 build_topology () {
@@ -24,53 +53,31 @@ echo -e aBB '\n' q | gmx make_ndx -f $4/ions.gro -o $4/BB.ndx >& $4/out_files/ou
 echo -e '\n#ifdef POSRES\n# include "posres.itp"\n#endif' >> $4/Protein.itp
 echo BB | gmx genrestr -f $4/ions.gro -n $4/BB.ndx -o $4/posres.itp >& $4/out_files/out_genr
 gmx grompp -f $CG/MDPs/em_memprot.mdp -c $4/ions.gro -r $4/ions.gro -p $4/topol.top -o $4/em -maxwarn 2 >& $4/out_files/out_grompp
-gmx mdrun -v -deffnm $4/em >& $4/out_files/out_em
-}
-
-# this section gets the distance from th card to the site - and filters less than 1 nm
-check_site () {
-txt_file=$CD/Sites_new/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
-site_occ=`sed -n "/Binding site $2$/,/^$/p" $txt_file | grep "BS Lipid Occupancy" | awk '{print $4}'`
-cutoff=`echo "scale=4; $site_occ / 2" | bc`
-resnum=`sed -n "/Binding site $2$/,/^$/p" $txt_file | tail -n+15 | awk -v var=$cutoff '$6>var' | awk '{print $1}' | tr -d [[:alpha:]] | sed ':a;N;$!ba;s/\n/ /g'`
-out=$4
-echo -e "site_occ $site_occ\ncutoff $cutoff\nresnum $resnum" > $out/site_specs
-rm -f $out/ndxs
-set -- "$resnum"
-for res in $@
-do
-        echo -n "ri$((res-1)) " >>  $out/ndxs
-done
-sed 's/ ri/ | ri/g' $out/ndxs -i
-echo "
-aGL0 | aPO1 | aPO2
-q" >> $out/ndxs
-gmx make_ndx -f $out/em.gro -o $out/site.ndx < $out/ndxs >& $out/out_files/out_sitendx
-site_ndx=`grep '\[ r_' $out/site.ndx | sed 's/\[//g' | sed 's/\]//g'`
-sed "s/$site_ndx/ Site /g" $out/site.ndx -i
-card_ndx=`grep '\[ GL0' $out/site.ndx | sed 's/\[//g' | sed 's/\]//g'`
-sed "s/$card_ndx/ CARD_HG /g" $out/site.ndx -i
-gmx distance -f $out/em.gro -s $out/em.tpr -oxyz $out/site_CL.xvg -select 'cog of group "Site" plus cog of group "CARD_HG"' -rmpbc no -pbc no -n $out/site.ndx >& $out/out_files/out_dist
-read -r x y z <<<$(tail -n 1 $out/site_CL.xvg)
-echo "scale = 4; sqrt($x^2 + $y^2)" | bc > $out/dist_from_site
+gmx mdrun -v -deffnm $4/em -plumed $4/dist.dat >& $4/out_files/out_em
+tail -n 1 $4/COLVAR | awk '{print $2}' > $4/dist_from_site
 }
 
 equil_system () {
 echo -e '"CARD" '"|"' "POPE"' '\n' '"PROTEIN" '"|"' "CARD" '"|"' "POPE"' '\n' '"WN" '"|"' "ION"' '\n' q | gmx make_ndx -f $4/em.gro -o $4/sys.ndx >& $4/out_files/out_ndx2
 sed 's/CARD_POPE/LIPID/g' $4/sys.ndx -i
 sed 's/WN_ION/SOL_ION/g' $4/sys.ndx -i
+sed 's/#UPPER/UPPER/g' $4/dist.dat -i
 gmx grompp -f $CG/MDPs/eq_2019.mdp -c $4/em.gro -r $4/em.gro -p $4/topol.top -n $4/sys.ndx -o $4/eq >& $4/out_files/out_grompp2
-gmx mdrun -v -deffnm $4/eq -nsteps 500000 -pin on -pinoffset 0 -ntomp 6 -ntmpi 1 >& $4/out_files/out_eq # << needs to be longer
+gmx mdrun -v -deffnm $4/eq -nsteps 500000 -pin on -pinoffset 0 -ntomp 6 -ntmpi 1 -plumed $4/dist.dat >& $4/out_files/out_eq 
+}
+
+check_eq () {
+out=$4
+read -r t0 d0 b0 f0 <<<$(grep " 0.000" $out/COLVAR)
+read -r t50 d50 b50 f50 <<<$(grep " 5000" $out/COLVAR)
+read -r t100 d100 b100 f100 <<<$(grep " 10000" $out/COLVAR)
+echo $1 $2 $3 $d0 $d50 $d100 
 }
 
 get_frames () {
 echo -e PROTEIN '\n' CARD | gmx mindist -f $4/eq.xtc -od $4/eq_dist.xvg >& $4/out_files/out_mindist
 mkdir -p $4/frames/
-for frame in {1..10}
-do
-	# times need to be tweaked
-	echo SYSTEM | gmx trjconv -f $4/eq.xtc -s $4/eq.tpr -dump $((frame*1000)) -o $4/frames/$frame.pdb >& $4/out_files/out_frame_$frame
-done
+echo SYSTEM | gmx trjconv -f $4/eq.xtc -s $4/eq -b 500000 -skip 5 -sep -o $4/frames/eq.pdb >& $4/out_files/out_frame_$frame
 rm -f $4/frames/*#*
 }
 
@@ -78,7 +85,8 @@ mkdir -p $CD/Sites_for_ML
 rm -f site_info/chosen.txt
 
 # loop through pdbs and extract sites
-for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6 5MRW 5AZC 1Q16 2QFI 2IC8 1RC2 1IWG 2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
+#for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6 5MRW 5AZC 1Q16 2QFI 2IC8 1RC2 1IWG #2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
+for pdb in 1FFT
 do
 	mkdir -p $CD/Sites_for_ML/$pdb
 	site_dir=$CD/Sites_new/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD
@@ -91,23 +99,32 @@ do
 		then
 			for i in {0..9} 
 			do
-				#echo starting $pdb $site $i
 				out_dir=$CD/Sites_for_ML/$pdb/$site/$i
-				mkdir -p $out_dir
-				mkdir -p $out_dir/out_files
-				#build_system $pdb $site $i $out_dir
-				#build_topology $pdb $site $i $out_dir
-                                #check_site $pdb $site $i $out_dir
-				dist_from_site=`awk -F '.' '{print $1}' $out_dir/dist_from_site`
-				if [[ $dist_from_site -lt 1 ]] 
+				if ! ls $CD/Sites_for_ML/$pdb/$site/*/eq.gro 1> /dev/null 2>&1
 				then
-					echo doing $pdb $site $i
-					#echo $pdb $site $i >> site_info/chosen.txt
-					#equil_system $pdb $site $i $out_dir
-					#get_frames $pdb $site $i $out_dir
+					echo starting $pdb $site $i
+					mkdir -p $out_dir
+					mkdir -p $out_dir/out_files
+					if [[ ! -f $out_dir/em.gro ]] 
+					then
+						build_system $pdb $site $i $out_dir
+						plumed_dat $pdb $site $i $out_dir
+						build_topology $pdb $site $i $out_dir
+					fi
+					dist_from_site=`awk -F '.' '{print $1}' $out_dir/dist_from_site`
+					exit 0
+					if [[ $dist_from_site -lt 1 ]] 
+					then
+						echo doing $pdb $site $i
+						echo $pdb $site $i >> site_info/chosen.txt
+						equil_system $pdb $site $i $out_dir
+					#	check_eq $pdb $site $i $out_dir
+                                        #        get_frames $pdb $site $i $out_dir
+					fi
+					rm -f $out_dir/*#*
+					rm -f $SCRIPT/*step*pdb* *mdp
+				exit 0
 				fi
-				rm -f $out_dir/*#*
-				rm -f $SCRIPT/*step*pdb* *mdp
 			done
 		fi
 	done
