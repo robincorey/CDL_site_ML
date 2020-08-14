@@ -75,18 +75,11 @@ read -r t100 d100 b100 f100 <<<$(grep " 10000" $out/COLVAR)
 echo $1 $2 $3 $d0 $d50 $d100 
 }
 
-get_frames () {
-echo -e PROTEIN '\n' CARD | gmx mindist -f $4/eq.xtc -od $4/eq_dist.xvg >& $4/out_files/out_mindist
-mkdir -p $4/frames/
-echo SYSTEM | gmx trjconv -f $4/eq.xtc -s $4/eq -b 500000 -skip 5 -sep -o $4/frames/eq.pdb >& $4/out_files/out_frame_$frame
-rm -f $4/frames/*#*
-}
-
 mkdir -p $CD/Sites_for_ML
 rm -f site_info/chosen.txt
 
 # loop through pdbs and extract sites
-for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6 5MRW 5AZC 1Q16 2QFI 2IC8 1RC2 1IWG #2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
+for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6 5MRW 5AZC 1Q16 2QFI 2IC8 1RC2 1IWG 2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
 do
 	mkdir -p $CD/Sites_for_ML/$pdb
 	site_dir=$CD/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD
@@ -116,7 +109,7 @@ do
 						echo doing $pdb $site $i
 						echo $pdb $site $i >> site_info/chosen.txt
 						equil_system $pdb $site $i $out_dir
-                                                get_frames $pdb $site $i $out_dir
+                                               # get_frames $pdb $site $i $out_dir
 					fi
 					rm -f $out_dir/*#*
 					rm -f $SCRIPT/*step*pdb* *mdp

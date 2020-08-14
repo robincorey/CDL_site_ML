@@ -6,6 +6,13 @@ FEP=$SITE/FEP_setup
 SCRIPT=/sansom/s156a/bioc1535/CDL_site_ML
 
 # define site extracting protocol
+get_frames () {
+#echo -e PROTEIN '\n' CARD | gmx mindist -f $4/eq.xtc -od $4/eq_dist.xvg >& $4/out_files/out_mindist
+mkdir -p $4/frames/
+echo SYSTEM | gmx trjconv -f $4/eq.xtc -s $4/eq -b 50000 -skip 25 -sep -o $4/frames/eq.pdb >& $4/out_files/out_frame_$frame
+rm -f $4/frames/*#*
+}
+
 prep_FEP (){
 dir=$SITE/FEP_data/$1/$2/$3/EM/
 for i in `seq 0 2 30`
@@ -33,7 +40,7 @@ do
 		sed "s/##INIT##/${i}/g" $FEP/md_FEP.mdp > $build_dir/md_FEP_${i}.mdp
 		for rep in {1..10}
                 do
-			gmx grompp -f $build_dir/md_FEP_${i}.mdp -c $build_dir/em_$rep.gro -r $build_dir/em_$rep.gro -p $4/topol_FEP.top -n $4/sys.ndx -o $data_dir/md_${i}_$rep.tpr -maxwarn 3 >& $build_dir/out_files/out1
+			gmx grompp -f $build_dir/md_FEP_${i}.mdp -c $build_dir/em_$rep.gro -r $build_dir/em_$rep.gro -p $4/topol_FEP.top -n $4/sys.ndx -o $data_dir/md_${i}_$rep.tpr -maxwarn 3 >& $build_dir/out_files/out3
 		done
 	fi
 	rm -f $SCRIPT/*step*pdb*
@@ -46,7 +53,8 @@ cp $FEP/run.sh $data_dir/run.sh
 }
 
 # loop through PDBs
-for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6 5MRW 5AZC 1Q16 2QFI 2IC8 1RC2 1IWG 2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
+#for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 
+for pdb in 5OC0 1PV6 3OB6 5MRW 5AZC #1Q16 2QFI 2IC8 1RC2 1IWG 2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
 do
 	for site in 0 `ls $SITE/Sites_for_ML/$pdb`
         do
@@ -56,7 +64,8 @@ do
                 if [[ -f $build_dir/eq.gro ]]
                 then
 		#	if [[ ! `ls -d $SITE/FEP_data/Data/${pdb}_${site}_* 2>/dev/null` ]]
-                		prep_FEP $pdb $site $i $build_dir
+        		get_frames $pdb $site $i $build_dir
+			prep_FEP $pdb $site $i $build_dir
 		fi
 		done
         done

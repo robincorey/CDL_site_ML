@@ -14,9 +14,34 @@ get_res_contact () {
 python $SCRIPTS/lipid-contact_rc.py $ALA_DIR/$2/md_0_1.tpr.gro $ALA_DIR/$2/all.xtc $ALA_DIR/$2
 }
 
-for i in `ls $DATA_DIR/FEP_data/Data | grep -v -e old -e longer`
+get_binding () {
+sed 1d $1/contact.csv | while read line
+do 
+	read -r res contact <<<$(echo $line | awk -F ',' '{print $1" "$2}')
+	if [[ `echo "$contact * 100" | bc | cut -f1 -d .` -gt 19 ]]
+	then
+		mkdir -p $ALA_DIR/$i/res/res_$res
+		echo $res > $ALA_DIR/$i/res/res_$res/$res.txt 
+		siteocc=`grep $res[[:alpha:]] $2 | awk '{print $6}'`
+		echo $res $contact $siteocc
+	fi
+done 
+}
+
+setup_ala () {
+:
+}
+
+for i in 1FX8_5_1
 do
+	pdb=`echo $i | cut -f1 -d '_'`
+	site_file=$DATA_DIR/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
 	mkdir -p $ALA_DIR/$i/out_files
-	combine_data $DATA_DIR/FEP_data/Data/$i $i
-	get_res_contact $DATA_DIR/FEP_data/Data/$i $i
+#	combine_data $DATA_DIR/FEP_data/Data/$i $i
+#	get_res_contact $DATA_DIR/FEP_data/Data/$i $i
+	get_binding $ALA_DIR/$i
+	for resi in `ls $ALA_DIR/$i/res/`
+	do
+		setup_ala $resi $site_file
+	done
 done
