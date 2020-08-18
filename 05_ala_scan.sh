@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DATA_DIR=/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses
+FEP=$DATA_DIR/FEP_setup
 ALA_DIR=/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/FEP_data/ala_scan
 SCRIPTS=/sansom/s156a/bioc1535/CDL_site_ML
 CG=/sansom/s137/bioc1535/Desktop/CG_KIT
@@ -16,10 +17,11 @@ python $SCRIPTS/lipid-contact_rc.py $ALA_DIR/$2/md_0_1.tpr.gro $ALA_DIR/$2/all.x
 }
 
 get_binding () {
+echo "res contact occ" > $1/res/res.txt
 sed 1d $1/contact.csv | while read line
 do
 	read -r res contact <<<$(echo $line | awk -F ',' '{print $1" "$2*100}')
-	if [[ `echo $contact |cut -f1 -d .` -gt 19 ]]
+	if [[ `echo $contact |cut -f1 -d .` -gt 29 ]]
 	then
 		siteocc=`grep $res[[:alpha:]] $2 | awk '{print $6}'`
 		echo $res $contact $siteocc >> $1/res/res.txt
@@ -30,29 +32,28 @@ done
 setup_ala () {
 mkdir -p $1/res/$5
 echo $1/res/$5
-#coords=$DATA_DIR/FEP_data/$2/$3/$4/
 coords=$DATA_DIR/Sites_for_ML/$2/$3/$4
 cp $coords/topol_FEP.top $1/res/$5/
-<<'END'
-rm -f > $1/res/$5/Protein.itp
-touch $1/res/$5/Protein.itp
-cat $coords/Protein.itp | while read 
-	do 
-	if [[ "$REPLY" = *248* ]]
-	then 
-		resnum=`echo $REPLY | awk '{print $3}'`
-		if  [[ "$resnum" = "248" ]] && [[ "$REPLY" = *SC* ]]
-			then
-			t=`echo "$REPLY" | awk '{print $2}'`
-			echo "$REPLY" | sed "s/$t/Dum/g" | sed 's/1.0000 ;/0.0000 ;/g' >> $1/res/$5/Protein.itp
+if [[ ! -f $1/res/$5/Protein.itp ]]
+then
+	touch $1/res/$5/Protein.itp
+	cat $coords/Protein.itp | while read 
+		do 
+		if [[ "$REPLY" = *$5* ]]
+		then 
+			resnum=`echo $REPLY | awk '{print $3}'`
+			if  [[ "$resnum" = "$5" ]] && [[ "$REPLY" = *SC* ]]
+				then
+				t=`echo "$REPLY" | awk '{print $2}'`
+				echo "$REPLY" | sed "s/$t/Dum/g" | sed 's/1.0000 ;/0.0000 ;/g' >> $1/res/$5/Protein.itp
+			else
+				echo "$REPLY" >> $1/res/$5/Protein.itp
+			fi
 		else
 			echo "$REPLY" >> $1/res/$5/Protein.itp
 		fi
-	else
-		echo "$REPLY" >> $1/res/$5/Protein.itp
-	fi
-done 
-END
+	done
+fi
 }
 
 prep_FEP () {
@@ -63,38 +64,36 @@ mkdir -p $data/out_files
 for i in `seq 0 2 30`
 do
 	mdp=$DATA_DIR/FEP_data/$2/$3/$4/EM/EM_$i
-	for rep in {1..1}
+	for run in {1..10}
 	do
-		echo $rep
-        	if [ ! -f $data/md_${i}_$rep.gro ]
+		echo $run
+        	if [ ! -f $data/md_${i}_$run.tpr ]
         	then
-                        gmx grompp -f $mdp/md_FEP_${i}.mdp -c $mdp/em_$rep.gro -r $mdp/em_$rep.gro -p $data/topol_FEP.top -n $coords/sys.ndx -o $data/md_${i}_$rep.tpr -maxwarn 3 >& $data/out_files/outgrompp
- 			gmx mdrun -v -deffnm $data/md_${i}_$rep -pin on -pinoffset 0 -ntomp 6 -ntmpi 1 -nsteps 600000 >& $data/out_files/outmdrun
+                        gmx grompp -f $mdp/md_FEP_${i}.mdp -c $mdp/em_$run.gro -r $mdp/em_$run.gro -p $data/topol_FEP.top -n $coords/sys.ndx -o $data/md_${i}_$run.tpr -maxwarn 3 >& $data/out_files/outgrompp
+ 	#		gmx mdrun -v -deffnm $data/md_${i}_$run -pin on -pinoffset 0 -ntomp 6 -ntmpi 1 -nsteps 600000 >& $data/out_files/outmdrun
 		fi
 	done
 done       
-#rm -f $SCRIPT/*step*pdb*
-#for rep in {1..10}
-#do
-  #      sed "s/#NAME#/$1_$2_$3/g" $FEP/array.sh | sed "s/#REP#/$rep/g" > $data_dir/array_$rep.sh
-#done
-#cp $FEP/run.sh $data_dir/run.sh
+for run in {1..10}
+do
+        sed "s/#NAME#/$2_$3_$4/g" $FEP/array.sh | sed "s/#REP#/$run/g" > $data/array_$run.sh
+done
+cp $FEP/run.sh $data/run.sh
 }
 
-for i in 1FX8_5_1
+for site in 5MRW_1_8
 do
-	read -r pdb pose rep <<<$(echo $i | awk -F '_' '{print $1" "$2" "$3}')
+	read -r pdb pose rep <<<$(echo $site | awk -F '_' '{print $1" "$2" "$3}')
 	site_file=$DATA_DIR/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
-	mkdir -p $ALA_DIR/$i/out_files
-	mkdir -p $ALA_DIR/$i/res
-	echo "res contact occ" > $ALA_DIR/$i/res/res.txt
-#	combine_data $DATA_DIR/FEP_data/Data/$i $i
-#	get_res_contact $DATA_DIR/FEP_data/Data/$i $i
-	get_binding $ALA_DIR/$i $site_file
-	sed 1d $ALA_DIR/$i/res/res.txt | while read -r res contact occ
+	mkdir -p $ALA_DIR/$site/out_files
+	mkdir -p $ALA_DIR/$site/res
+#	combine_data $DATA_DIR/FEP_data/Data/$site $site
+#	get_res_contact $DATA_DIR/FEP_data/Data/$site $site
+	get_binding $ALA_DIR/$site $site_file
+	sed 1d $ALA_DIR/$site/res/res.txt | while read -r res contact occ
 	do
-		setup_ala $ALA_DIR/$i $pdb $pose $rep $res
-		prep_FEP $ALA_DIR/$i $pdb $pose $rep $res 
-		exit 0
+		echo $ALA_DIR/$site $pdb $pose $rep $res
+		setup_ala $ALA_DIR/$site $pdb $pose $rep $res
+		prep_FEP $ALA_DIR/$site $pdb $pose $rep $res 
 	done
 done
