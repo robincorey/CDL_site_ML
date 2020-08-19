@@ -1,8 +1,8 @@
 ;
 ;	File 'mdout.mdp' was generated
 ;	By user: bioc1535 (13739)
-;	On host: msc
-;	At date: Mon Aug 10 18:00:14 2020
+;	On host: secy
+;	At date: Wed Aug 19 12:53:10 2020
 ;
 ;	Created by:
 ;	                     :-) GROMACS - gmx grompp, 2018.6 (-:
@@ -11,7 +11,7 @@
 ;	Data prefix:  /sbcb/packages/opt/Linux_x86_64/gromacs/2018.6_GCC6.2_CUDA9.2.AVX2.plumed2.4.4
 ;	Working dir:  /sansom/s156a/bioc1535/CDL_site_ML
 ;	Command line:
-;	  gmx grompp -f /sansom/s137/bioc1535/Desktop/CG_KIT/MDPs/eq_2019.mdp -c /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/1/em.gro -r /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/1/em.gro -p /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/1/topol.top -n /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/1/sys.ndx -o /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/1FFT/0/1/eq
+;	  gmx grompp -f /sansom/s137/bioc1535/Desktop/CG_KIT/MDPs/eq_2019.mdp -c /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5MRW/1/8/em.gro -r /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5MRW/1/8/em.gro -p /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/FEP_data/ala_scan/5MRW_1_8/res/277/topol_FEP.top -n /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/Sites_for_ML/5MRW/1/8/sys.ndx -o /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/FEP_data/ala_scan/5MRW_1_8/res/277/eq -maxwarn 2
 
 ; VARIOUS PREPROCESSING OPTIONS
 ; Preprocessor information: use cpp syntax.

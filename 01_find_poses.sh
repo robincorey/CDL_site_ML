@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # data dir
-CD=/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses
+DATA=/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses
 SETUP=/sansom/s156a/bioc1535/Ecoli_patch/full_complement/chosen
 SCRIPT=/sansom/s156a/bioc1535/CDL_site_ML
 
@@ -16,7 +16,7 @@ python $CG/insane.py -f $4/pose.gro -o $4/$1.$2.$3.mem.gro -x $x -y $y -z $z -l 
 }
 
 plumed_dat () {
-txt_file=$CD/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
+txt_file=$DATA/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
 site_occ=`sed -n "/Binding site $2$/,/^$/p" $txt_file | grep "BS Lipid Occupancy" | awk '{print $4}'`
 cutoff=`echo "scale=4; $site_occ / 2" | bc`
 resnum=`sed -n "/Binding site $2$/,/^$/p" $txt_file | tail -n+15 | awk -v var=$cutoff '$6>var' | awk '{print $1}' | tr -d [[:alpha:]] | sed ':a;N;$!ba;s/\n/ /g'`
@@ -75,14 +75,14 @@ read -r t100 d100 b100 f100 <<<$(grep " 10000" $out/COLVAR)
 echo $1 $2 $3 $d0 $d50 $d100 
 }
 
-mkdir -p $CD/Sites_for_ML
+mkdir -p $DATA/Sites_for_ML
 rm -f site_info/chosen.txt
 
 # loop through pdbs and extract sites
 for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6 5MRW 5AZC 1Q16 2QFI 2IC8 1RC2 1IWG 2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
 do
-	mkdir -p $CD/Sites_for_ML/$pdb
-	site_dir=$CD/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD
+	mkdir -p $DATA/Sites_for_ML/$pdb
+	site_dir=$DATA/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD
 	# gets the range of sites
 	total=`(cd $site_dir/Binding_Poses && ls *gro) | tr -d [[:alpha:]]. | awk -F '_' '{print $1}' | sort -u | wc -l`
 	for site in `seq 0 $((total-1))`
@@ -92,8 +92,8 @@ do
 		then
 			for i in {0..9} 
 			do
-				out_dir=$CD/Sites_for_ML/$pdb/$site/$i
-				if ! ls $CD/Sites_for_ML/$pdb/$site/*/eq.gro 1> /dev/null 2>&1
+				out_dir=$DATA/Sites_for_ML/$pdb/$site/$i
+				if ! ls $DATA/Sites_for_ML/$pdb/$site/*/eq.gro 1> /dev/null 2>&1
 				then
 					mkdir -p $out_dir
 					mkdir -p $out_dir/out_files

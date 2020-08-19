@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # data dir
-SITE=/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses
-FEP=$SITE/FEP_setup
+DATA=/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses
+FEP=$DATA/FEP_setup
 SCRIPT=/sansom/s156a/bioc1535/CDL_site_ML
 
 # define site extracting protocol
@@ -14,11 +14,11 @@ rm -f $4/frames/*#*
 }
 
 prep_FEP (){
-dir=$SITE/FEP_data/$1/$2/$3/EM/
+dir=$DATA/FEP_data/$1/$2/$3/EM/
 for i in `seq 0 2 30`
 do
 	build_dir=$dir/EM_$i
-	data_dir=$SITE/FEP_data/Data/$1_$2_$3/
+	data_dir=$DATA/FEP_data/Data/$1_$2_$3/
 	mkdir -p $build_dir/out_files
 	mkdir -p $data_dir
 	if [ ! -f $build_dir/em_10.gro ]
@@ -56,14 +56,14 @@ cp $FEP/run.sh $data_dir/run.sh
 #for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 
 for pdb in 5OC0 1PV6 3OB6 5MRW 5AZC #1Q16 2QFI 2IC8 1RC2 1IWG 2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
 do
-	for site in 0 `ls $SITE/Sites_for_ML/$pdb`
+	for site in 0 `ls $DATA/Sites_for_ML/$pdb`
         do
                 for i in {0..9}
                 do
-		build_dir=$SITE/Sites_for_ML/$pdb/$site/$i/
+		build_dir=$DATA/Sites_for_ML/$pdb/$site/$i/
                 if [[ -f $build_dir/eq.gro ]]
                 then
-		#	if [[ ! `ls -d $SITE/FEP_data/Data/${pdb}_${site}_* 2>/dev/null` ]]
+		#	if [[ ! `ls -d $DATA/FEP_data/Data/${pdb}_${site}_* 2>/dev/null` ]]
         		get_frames $pdb $site $i $build_dir
 			prep_FEP $pdb $site $i $build_dir
 		fi
