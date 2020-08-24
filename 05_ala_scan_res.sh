@@ -31,24 +31,26 @@ done
 }
 
 setup_ala () {
-mkdir -p $1/res/$5
-echo $1/res/$5
+mkdir -p $1/res_fep/$5
+echo $1/res_fep/$5
 coords=$DATA/FEP/Sites/$2/$3/$4
-cp $coords/topol_FEP.top $1/res/$5/
-cp $coords/posres.itp $1/res/$5/
-if [[ ! -f $1/res/$5/Protein.itp ]] ; then
-	touch $1/res/$5/Protein.itp
+cp $coords/topol_FEP.top $1/res_fep/$5/
+cp $coords/posres.itp $1/res_fep/$5/
+if [[ ! -f $1/res_fep/$5/Protein.itp ]] ; then
+	touch $1/res_fep/$5/Protein.itp
 	cat $coords/Protein.itp | while read ;do 
 		if [[ "$REPLY" = *$5* ]] ;then 
 			resnum=`echo $REPLY | awk '{print $3}'`
-			if  [[ "$resnum" = "$5" ]] && [[ "$REPLY" = *SC* ]] ;then
-				t=`echo "$REPLY" | awk '{print $2}'`
-				echo "$REPLY" | sed "s/$t/Dum/g" | sed 's/1.0000 ;/0.0000 ;/g' >> $1/res/$5/Protein.itp
+			if  [[ "$resnum" = "$5" ]] ;then
+				#t=`echo "$REPLY" | awk '{print $2}'`
+				resname=`echo "$REPLY" | awk '{print $4}'`
+				#echo "$REPLY" | sed "s/$t/Dum/g" | sed 's/1.0000 ;/0.0000 ;/g' >> $1/res_fep/$5/Protein.itp
+				echo "$REPLY" | awk '{print $1" "$2" "$3" "$4" "$5" "$6" "$7" "72" Dum "0" "72}' >> $1/res_fep/$5/Protein.itp 
 			else
-				echo "$REPLY" >> $1/res/$5/Protein.itp
+				echo "$REPLY" >> $1/res_fep/$5/Protein.itp
 			fi
 		else
-			echo "$REPLY" >> $1/res/$5/Protein.itp
+			echo "$REPLY" >> $1/res_fep/$5/Protein.itp
 		fi
 	done
 fi
@@ -91,17 +93,17 @@ for site in 5MRW_1_8 ; do
 	read -r pdb pose rep <<<$(echo $site | awk -F '_' '{print $1" "$2" "$3}')
 	site_file=$DATA/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
 	mkdir -p $ALA_DIR/$site/out_files
-	mkdir -p $ALA_DIR/$site/res
+	mkdir -p $ALA_DIR/$site/res_fep
 #	combine_data $DATA/FEP_data/Data/$site $site
 #	get_res_contact $DATA/FEP_data/Data/$site $site
 #	get_binding $ALA_DIR/$site $site_file
 #	sed 1d $ALA_DIR/$site/res/res.txt | while read -r res contact occ
-	for res in 268 277 278 283 285 523 ; do # 2
+	for res in 268 ; do #277 278 283 285 523 ; do # 2
 		coords=$DATA/FEP/Sites/$pdb/$pose/$rep
-		data=$ALA_DIR/$site/res/$res
+		data=$ALA_DIR/$site/res_fep/$res
 		setup_ala $ALA_DIR/$site $pdb $pose $rep $res
-		equil_pose $ALA_DIR/$site $pdb $pose $rep $res
-		get_frames $ALA_DIR/$site $pdb $pose $rep $res
-		prep_FEP $ALA_DIR/$site $pdb $pose $rep $res 
+		#equil_pose $ALA_DIR/$site $pdb $pose $rep $res
+		#get_frames $ALA_DIR/$site $pdb $pose $rep $res
+		#prep_FEP $ALA_DIR/$site $pdb $pose $rep $res 
 	done
 done
