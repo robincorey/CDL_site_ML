@@ -82,13 +82,13 @@ for site in 5MRW_1_8 ; do
 	site_file=$DATA/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
 	mkdir -p $ALA_DIR/$site/out_files
 	mkdir -p $ALA_DIR/$site/res_fep2
-	for res in 277 278 283 285 523 ; do #277 278 283 285 523 ; do 
+	for res in 281 282; do 
 		coords=$DATA/FEP/Sites/$pdb/$pose/$rep
 		data=$ALA_DIR/$site/res_fep2/$res
 		setup_ala $data $pdb $pose $rep $res
-		#prep_FEP $data $pdb $pose $rep $res
+		prep_FEP $data $pdb $pose $rep $res
 		setup_free ${data}_free $pdb $pose $rep $res
-		#prep_FEP ${data}_free $pdb $pose $rep $res 
+		prep_FEP ${data}_free $pdb $pose $rep $res 
 
 	done
 done
