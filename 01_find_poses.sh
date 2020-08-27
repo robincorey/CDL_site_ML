@@ -65,7 +65,7 @@ sed 's/CARD_POPE/LIPID/g' $4/sys.ndx -i
 sed 's/WN_ION/SOL_ION/g' $4/sys.ndx -i
 sed 's/#UPPER/UPPER/g' $4/dist.dat -i
 gmx grompp -f $CG/MDPs/eq_2019.mdp -c $4/em.gro -r $4/em.gro -p $4/topol.top -n $4/sys.ndx -o $4/eq >& $4/out_files/out_grompp2
-gmx mdrun -v -deffnm $4/eq -nsteps 5000000 -pin on -pinoffset 0 -ntomp 6 -ntmpi 1 -plumed $4/dist.dat >& $4/out_files/out_eq 
+gmx mdrun -v -deffnm $4/eq -nsteps 50000 -pin on -pinoffset 0 -ntomp 6 -ntmpi 1 -plumed $4/dist.dat >& $4/out_files/out_eq 
 }
 
 check_eq () {
@@ -78,10 +78,11 @@ echo $1 $2 $3 $d0 $d50 $d100
 
 rm -f site_info/chosen.txt
 
-for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6 5MRW 5AZC 1Q16 2QFI 2IC8 1RC2 1IWG 2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF 
+#for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6 
+for pdb in 5MRW 5AZC 1Q16 2QFI 2IC8 1RC2 1IWG 2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF 
 do
 	mkdir -p $DATA/FEP/$pdb
-	site_dir=$DATA/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD
+	site_dir=$DATA/PyLipID_poses2/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD
 	total=`(cd $site_dir/Binding_Poses && ls *gro) | tr -d [[:alpha:]]. | awk -F '_' '{print $1}' | sort -u | wc -l`
 	for site in `seq 0 $((total-1))`; do
 		occ=`grep -A5 "Binding site ${site}$" $site_dir/BindingSites_Info_CARD.txt | tail -n 1 | awk '{print $4}' | awk -F'.' '{print $1}'`
@@ -89,6 +90,7 @@ do
 			for i in {0..9} ; do
 				out_dir=$DATA/FEP/$pdb/$site/$i
 				if ! ls $DATA/FEP/$pdb/$site/*/eq.gro 1> /dev/null 2>&1 ; then
+					echo $out_dir
 					mkdir -p $out_dir/out_files
 					if [[ ! -f $out_dir/em.gro ]] ; then
 						build_system $pdb $site $i $out_dir

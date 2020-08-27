@@ -54,8 +54,6 @@ fi
 }
 
 equil_pose () {
-coords=$DATA/FEP/Sites/$2/$3/$4
-data=$1/res/$5
 mkdir -p $data/out_files
 if [[ ! -f $data/eq.gro ]] ; then
 	module load ubuntu-18/gromacs/2018.6_AVX2_plumed-2.4.4
@@ -64,17 +62,20 @@ if [[ ! -f $data/eq.gro ]] ; then
 fi
 }
 
+get_frames () {
+mkdir -p $data/frames/
+echo SYSTEM | gmx trjconv -f $data/eq.xtc -s $data/eq -b 50000 -skip 25 -sep -o $data/frames/eq.pdb >& $data/out_files/out_frame
+rm -f $data/frames/*#*
+}
+
 prep_FEP () {
-coords=$DATA/FEP/Sites/$2/$3/$4
-data=$1/res/$5
-echo $data
 mkdir -p $data/out_files
 for i in `seq 0 2 30` ; do
-	mdp=$DATA/FEP_data/$2/$3/$4/EM/EM_$i
+	mdp=$DATA/FEP/Data/$2/$3/$4/EM/EM_$i
 	for run in {1..10} ;do
 		echo $run
         	if [ ! -f $data/md_${i}_$run.tpr ] ;then
-                        gmx grompp -f $mdp/md_FEP_${i}.mdp -c $mdp/em_$run.gro -r $mdp/em_$run.gro -p $data/topol_FEP.top -n $coords/sys.ndx -o $data/md_${i}_$run.tpr -maxwarn 3 >& $data/out_files/outgrompp
+                        gmx grompp -f $mdp/md_FEP_${i}.mdp -c $data/frames/eq$run.pdb -r $data/frames/eq$run.pdb -p $data/topol_FEP.top -n $coords/sys.ndx -o $data/md_${i}_$run.tpr -maxwarn 3 >& $data/out_files/outgrompp
  	#		gmx mdrun -v -deffnm $data/md_${i}_$run -pin on -pinoffset 0 -ntomp 6 -ntmpi 1 -nsteps 600000 >& $data/out_files/outmdrun
 		fi
 	done
@@ -94,9 +95,12 @@ for site in 5MRW_1_8 ; do
 #	get_res_contact $DATA/FEP_data/Data/$site $site
 #	get_binding $ALA_DIR/$site $site_file
 #	sed 1d $ALA_DIR/$site/res/res.txt | while read -r res contact occ
-	for res in 268 277 278 283 285 523 ;	do
+	for res in 268 277 278 283 285 523 ; do # 2
+		coords=$DATA/FEP/Sites/$pdb/$pose/$rep
+		data=$ALA_DIR/$site/res/$res
 		setup_ala $ALA_DIR/$site $pdb $pose $rep $res
 		equil_pose $ALA_DIR/$site $pdb $pose $rep $res
-		#prep_FEP $ALA_DIR/$site $pdb $pose $rep $res 
+		get_frames $ALA_DIR/$site $pdb $pose $rep $res
+		prep_FEP $ALA_DIR/$site $pdb $pose $rep $res 
 	done
 done
