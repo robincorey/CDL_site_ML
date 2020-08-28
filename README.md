@@ -53,7 +53,7 @@ dependendcy on 'Alchemical analysis'
 STEP 5
 Do additional FEP analyses, include Ala scan
 ```
-05_ala_scan.sh
+05_ala_scan_res.sh
 ```
 
 STEP 6: prepare data for ML
