@@ -91,20 +91,20 @@ sed "s/#NAME#/$2_$3_$4_$5/g" $FEP/array_all.sh > $ALA_DIR/Data/${2}_${3}_${5}/ar
 }
 
 #for site in 5MRW_1_8 ; do
-for site in 1RC2_1 2QFI_11 2IC8_0 2WSX_22 5JWY_1 3B5D_3 3DHW_10 1PW4_3 4Q65_6 4DJI_3; do
+for site in 2QFI_11 2IC8_0 2WSX_22 5JWY_1 3B5D_3 3DHW_10 1PW4_3 4Q65_6 4DJI_3; do
 	read -r pdb pose <<<$(echo $site | awk -F '_' '{print $1" "$2}')
 	rep=`ls $DATA/FEP/$pdb/$pose/*/eq.gro | awk -F '/' '{print $10}'`
 	site_file=$DATA/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
 	mkdir -p $ALA_DIR/$site/out_files
 	mkdir -p $ALA_DIR/$site/res_fep2
 	coords=$DATA/FEP/$pdb/$pose/$rep
-	build_free $ALA_DIR/$site/free $pdb $pose 
-	get_res $ALA_DIR/$site $pdb $pose 	
+	#build_free $ALA_DIR/$site/free $pdb $pose 
+	#get_res $ALA_DIR/$site $pdb $pose 	
 	for res in `cat $ALA_DIR/$site/res.txt`; do
 		data=$ALA_DIR/$site/${res}
-		setup_ala $data $pdb $pose $rep $res
+	#	setup_ala $data $pdb $pose $rep $res
 		prep_FEP $data $pdb $pose $rep $res
-		setup_free ${data}_free $pdb $pose $rep $res
+	#	setup_free ${data}_free $pdb $pose $rep $res
 		prep_FEP ${data}_free $pdb $pose $rep ${res}_free 
 	done
 done
