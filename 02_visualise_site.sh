@@ -38,7 +38,7 @@ echo -e "\n" >> site_info/load_pds.scr
 
 mkdir -p site_info/sites/
 rm -f site_info/load_pds.scr
-echo -e "display rendermode GLSL\ncolor Name D green\ncolor Resname GLY red\ncolor Resname ARG blue\ncolor Resname LYS blue\ncolor Resname THR green\ncolor Resname PRO green\ncolor Resname SER green\ncolor Resname PHE orange\ncolor Resname TYR orange\ncolor Resname TRP orange\ncolor Resname HIS cyan\ncolor Resname LEU yellow\ncolor Resname ILE yello\ncolor Resname ASP pink\ncolor Resname GLU pink\ncolor Resname ASN green\ncolor Resname GLN green " > site_info/load_pds.scr
+echo -e "display rendermode GLSL\ncolor Name D green\ncolor Resname GLY red\ncolor Resname ARG blue\ncolor Resname LYS blue\ncolor Resname THR green\ncolor Resname PRO green\ncolor Resname SER green\ncolor Resname PHE orange\ncolor Resname TYR orange\ncolor Resname TRP orange\ncolor Resname HIS cyan\ncolor Resname LEU yellow\ncolor Resname ILE yellow\ncolor Resname VAL yellow\ncolor Resname ASP pink\ncolor Resname GLU pink\ncolor Resname ASN green\ncolor Resname GLN green " > site_info/load_pds.scr
 
 count=0
 module unload gromacs/2019.4-AVX2-GPU
@@ -64,6 +64,6 @@ do
 		fi
 		done
         done
+rm -f *#* tprs/*#* sites/*#*
 done
 
-rm -f *#* tprs/*#* sites/*#*
