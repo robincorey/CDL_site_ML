@@ -1,4 +1,5 @@
 ***this is a work in process*** 
+
 none of these files are intended to be ready for others to use
 
 Intro
@@ -21,6 +22,14 @@ Build training set from subset of data - use actual CG data.
 
 Scripts
 ====
+-rw-r--r--  1 bioc1535 sansom    0 Jul 29  2020 06_training_data.sh
+-rwxr--r--  1 bioc1535 sansom 2.8K Aug 19  2020 03_site_FEP_test_lamda.sh
+-rwxr--r--  1 bioc1535 sansom 4.3K Aug 30  2020 05_ala_scan_res.sh
+-rwxr--r--  1 bioc1535 sansom 2.6K Sep 22 11:22 02_visualise_site.sh
+-rwxr--r--  1 bioc1535 sansom 4.5K Feb  8 09:48 05_ala_scan_res.TRP.sh
+-rwxr-xr-x+ 1 bioc1535 sansom 5.0K Mar 19 15:20 01_find_poses.sh
+-rwxr--r--+ 1 bioc1535 sansom 2.7K Mar 19 15:20 03_site_FEP.sh
+-rwxr--r--+ 1 bioc1535 sansom 1.7K Mar 19 15:20 04_analyse_FEP.sh
 
 STEP 1: find sites and build poses. 
 Includes a step where the pose is sanity checked.
@@ -37,6 +46,7 @@ Visualise the site - essentially builds a VMD vis script
 STEP 3: run site energy FEPs. 
 ```
 03_site_FEP.sh
+03_site_FEP_test_lamda.sh
 ```
 
 Short run script for putting files on local HPC included
@@ -51,18 +61,15 @@ dependendcy on 'Alchemical analysis'
 ```
 
 STEP 5
-Do additional FEP analyses, include Ala scan
+Do additional FEP analyses, include Ala scan. Separate version for TRP as virtual sites present.
 ```
 05_ala_scan_res.sh
+05_ala_scan_res.TRP.sh
 ```
 
 STEP 6: prepare data for ML
-Gathers the residues in contact with the lipid at lamda 0 and the energy of the site
+Pending trial analysis with CG
 ```
-06_prep_ML.sh
+06_training_data.sh
 ```
 
-STEP 7: use sites to train a CNN-based scoring function
-```
-07_training_data.sh
-```
