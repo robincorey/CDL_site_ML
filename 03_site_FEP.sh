@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# data dir
+# define data dirs here
 DATA=/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses
 FEP=$DATA/FEP_setup
 SCRIPT=/sansom/s156a/bioc1535/CDL_site_ML

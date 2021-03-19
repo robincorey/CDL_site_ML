@@ -94,7 +94,8 @@ sed "s/#NAME#/$2_$3_$4_$5/g" $FEP/array_all.sh > ${ALA_DIR}_TRP/Data/${2}_${3}_$
 #cp $FEP/run.sh $1/Data/run.sh
 }
 
-for site in 2QFI_11 2IC8_0 2WSX_22 5JWY_1 3B5D_3 3DHW_10 1PW4_3 4Q65_6 4DJI_3; do
+for site in 2QFI_11 2IC8_0; do 
+#for site in 2WSX_22 5JWY_1 3B5D_3 3DHW_10 1PW4_3 4Q65_6 4DJI_3; do
 	read -r pdb pose <<<$(echo $site | awk -F '_' '{print $1" "$2}')
 	rep=`ls $DATA/FEP/$pdb/$pose/*/eq.gro | awk -F '/' '{print $10}'`
 	site_file=$DATA/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt

@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# data dir
+# script to cycle through sites, extract the correct coords and build new systems for FEP
+
+# define input dirs here
 DATA=/sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses
 SITES=$DATA/FEP/Sites
 SETUP=/sansom/s156a/bioc1535/Ecoli_patch/full_complement/chosen
 SCRIPT=/sansom/s156a/bioc1535/CDL_site_ML
 
 module load ubuntu-18/gromacs/2018.6_AVX2_plumed-2.4.4
-
-# functions
 
 build_system () {
 gmx editconf -f $site_dir/Binding_Poses/BSid$2_No$i.gro -o $4/pose.gro -d 2 >& $4/out_files/out_edc1
@@ -17,6 +17,7 @@ python $CG/insane.py -f $4/pose.gro -o $4/$1.$2.$3.mem.gro -x $x -y $y -z $z -l 
 }
 
 plumed_dat () {
+# plumed used to keep lipid on site during FEP process
 txt_file=$DATA/PyLipID_poses/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD/BindingSites_Info_CARD.txt
 site_occ=`sed -n "/Binding site $2$/,/^$/p" $txt_file | grep "BS Lipid Occupancy" | awk '{print $4}'`
 cutoff=`echo "scale=4; $site_occ / 2" | bc`
@@ -32,6 +33,7 @@ do
 	num=`grep " $((res-1))[[:alpha:]]" $out/$file.mem.gro | grep BB | tr -d '[:alpha:]' | awk '{print $2}'`
 	sed "s/#PROT#/#PROT#$num,/g" $out/dist.dat -i
 done
+# specific for CDL
 for bead in GL0 PO1 PO2
 do
 	num=`grep $bead $out/$file.mem.gro | tr -d '[:alpha:]' | awk '{print $3}'`
