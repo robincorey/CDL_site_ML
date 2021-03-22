@@ -45,8 +45,8 @@ module unload gromacs/2019.4-AVX2-GPU
 module load gromacs/5.0.2/64
 mkdir -p tprs/
 mkdir -p sites
-#for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 5OC0 1PV6 3OB6
-for pdb in 5MRW 5AZC 1Q16 2QFI 2IC8 1RC2 1IWG 2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
+
+while read pdb
 do
 	rm -f site_info/site_info_$pdb.txt
 	for site in `ls $DATA/FEP/$pdb`
@@ -65,5 +65,4 @@ do
 		done
         done
 rm -f *#* tprs/*#* sites/*#*
-done
-
+done < pdbs.txt

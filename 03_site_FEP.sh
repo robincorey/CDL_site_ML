@@ -7,7 +7,7 @@ SCRIPT=/sansom/s156a/bioc1535/CDL_site_ML
 
 # define site extracting protocol
 get_frames () {
-#echo -e PROTEIN '\n' CARD | gmx mindist -f $4/eq.xtc -od $4/eq_dist.xvg >& $4/out_files/out_mindist
+echo -e PROTEIN '\n' CARD | gmx mindist -f $4/eq.xtc -od $4/eq_dist.xvg >& $4/out_files/out_mindist
 mkdir -p $4/frames/
 echo SYSTEM | gmx trjconv -f $4/eq.xtc -s $4/eq -b 50000 -skip 25 -sep -o $4/frames/eq.pdb >& $4/out_files/out_frame_$frame
 rm -f $4/frames/*#*
@@ -52,9 +52,7 @@ done
 cp $FEP/run.sh $data_dir/run.sh
 }
 
-# loop through PDBs
-#for pdb in 1FFT 1FX8 1KF6 1KPK 1NEK 5OQT 4JR9 2HI7 3O7P 3ZE3 1ZCD 
-for pdb in 5OC0 1PV6 3OB6 5MRW 5AZC #1Q16 2QFI 2IC8 1RC2 1IWG 2WSX 5JWY 3B5D 3DHW 1PW4 4Q65 4DJI 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF 2R6G 4GD3 5ZUG 6AL2 1L7V 4IU8 4KX6 3QE7 5SV0 1U77 5AJI 4ZP0 3K07 1KQF
+while read pdb
 do
 	for site in 0 `ls $DATA/Sites_for_ML/$pdb`
         do
@@ -63,10 +61,9 @@ do
 		build_dir=$DATA/Sites_for_ML/$pdb/$site/$i/
                 if [[ -f $build_dir/eq.gro ]]
                 then
-		#	if [[ ! `ls -d $DATA/FEP_data/Data/${pdb}_${site}_* 2>/dev/null` ]]
         		get_frames $pdb $site $i $build_dir
 			prep_FEP $pdb $site $i $build_dir
 		fi
 		done
         done
-done
+done < pdbs.txt
