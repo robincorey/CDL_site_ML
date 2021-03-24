@@ -75,7 +75,6 @@ out=$4
 read -r t0 d0 b0 f0 <<<$(grep " 0.000" $out/COLVAR)
 read -r t50 d50 b50 f50 <<<$(grep " 5000" $out/COLVAR)
 read -r t100 d100 b100 f100 <<<$(grep " 10000" $out/COLVAR)
-echo $1 $2 $3 $d0 $d50 $d100 
 }
 
 rm -f site_info/chosen.txt

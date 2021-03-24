@@ -8,6 +8,7 @@ if [[ ! -f $1/Analysis_$2/results.txt ]]
 then
 	/sansom/s137/bioc1535/.local/bin/alchemical_analysis -d $1 -o $1/Analysis_$2 -q "_${2}.xvg" -p "md_" -i 100000 -t 323 -s 2000 
 fi
+# 93.69 is calculated "free" value
 tail -n 1 $1/Analysis_$2/results.txt | awk '{print 93.69-$(NF-2)}' >> $DATA/FEP_data/energies/$3.txt
 }
 
