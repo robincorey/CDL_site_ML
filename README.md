@@ -1,4 +1,4 @@
-***this is a work in process*** 
+***this is a work in progress*** 
 
 none of these files are intended to be ready for others to use
 
@@ -18,7 +18,7 @@ https://pubs.acs.org/doi/pdf/10.1021/acs.jcim.6b00740
 Approach
 ====
 
-Build training set from subset of data - use actual CG data.
+Build training set from subset of data - use CG data.
 
 Scripts
 ====
