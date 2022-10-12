@@ -8,12 +8,13 @@ SITES=$DATA/FEP/Sites
 SETUP=/sansom/s156a/bioc1535/Ecoli_patch/full_complement/chosen
 SCRIPT=/sansom/s156a/bioc1535/CDL_site_ML
 
-module load ubuntu-18/gromacs/2018.6_AVX2_plumed-2.4.4
+#module load ubuntu-18/gromacs/2018.6_AVX2_plumed-2.4.4
 
 build_system () {
 gmx editconf -f $site_dir/Binding_Poses/BSid$2_No$i.gro -o $4/pose.gro -d 2 >& $4/out_files/out_edc1
 read -r x y z <<<$(tail -n 1 $4/pose.gro)
-python $CG/insane.py -f $4/pose.gro -o $4/$1.$2.$3.mem.gro -x $x -y $y -z $z -l POPE:100 -sol W -p $4/temp.top -center >& $4/out_files/out_mem
+#python $CG/insane.py -f $4/pose.gro -o $4/$1.$2.$3.mem.gro -x $x -y $y -z $z -l POPE:100 -sol W -p $4/temp.top >& $4/out_files/out_mem
+python /sansom/s137/bioc1535/Desktop/CG_KIT/insane.py -f /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/FEP/1KQF/8/0/pose.gro -o /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/FEP/1KQF/8/0/1KQF.8.0.mem.gro -x 17.07300 -y 16.97500 -z 21 -l POPE:100 -sol W -p /sansom/s156a/bioc1535/EC_MEMPROT/5us_analyses/FEP/1KQF/8/0/temp.top -dm -4
 }
 
 plumed_dat () {
@@ -36,7 +37,7 @@ done
 # specific for CDL
 for bead in GL0 PO1 PO2
 do
-	num=`grep $bead $out/$file.mem.gro | tr -d '[:alpha:]' | awk '{print $3}'`
+	num=`grep $bead $out/$file.mem.gro | sed "s/$bead//g" | tr -d '[:alpha:]' | awk '{print $2}'`
 	sed "s/#LIP#/#LIP#$num,/g" $out/dist.dat -i
 done
 sed 's/#LIP#//g' $out/dist.dat -i 
@@ -85,11 +86,12 @@ do
 	mkdir -p $dir
 	site_dir=$DATA/PyLipID_poses2/$pdb/lipid_interactions/Interaction_CARD/Binding_Sites_CARD
 	total=`(cd $site_dir/Binding_Poses && ls *gro) | tr -d [[:alpha:]]. | awk -F '_' '{print $1}' | sort -u | wc -l`
-	for site in `seq 0 $((total-1))`; do
+	for site in 8 ; do #`seq 0 $((total-1))`; do
 		occ=`grep -A5 "Binding site ${site}$" $site_dir/BindingSites_Info_CARD.txt | tail -n 1 | awk '{print $4}' | awk -F'.' '{print $1}'`
 		if [[ $occ -gt 50 ]] ; then
 			for i in {0..9} ; do
 				out_dir=$dir/$site/$i
+				echo $out_dir
 				if ! ls $dir/$site/*/eq.gro 1> /dev/null 2>&1 ; then
 					mkdir -p $out_dir/out_files
 					if [[ ! -f $out_dir/em.gro ]] ; then
@@ -107,5 +109,5 @@ do
 			done
 		fi
 	done
-done < pdbs.txt
+done < 1kqf.txt
 
