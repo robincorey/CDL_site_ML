@@ -15,17 +15,20 @@ def readSmiles(input):
 	print("Read %s/%s molecules" % (len(smiles_list), len(suppl)))
 	return smiles_list
 
-def Smilestomodel(mol):
-	mol_H = Chem.AddHs(mol)
-	addbonds = AllChem.EmbedMolecule(mol_H)
-	# using MMFF, could also add options for other methods
-	AllChem.MMFFOptimizeMolecule(mol_H)
-	return mol_H
+def Smilestomodel(smiles_list):
+	all_models = []
+	for mol in smiles_list:
+		mol_H = Chem.AddHs(mol)
+		addbonds = AllChem.EmbedMolecule(mol_H)
+		# using MMFF, could also add options for other methods
+		AllChem.MMFFOptimizeMolecule(mol_H)
+		all_models.append(mol_H)
+	return all_models
 
 def write_SDF(all_models):
 	outfile = Chem.SDWriter(args.output)
-	#for mol in all_models:
-	outfile.write(mol)
+	for mol in all_models:
+		outfile.write(mol)
 	print("Wrote %s/%s molecules to %s" % (len(all_models), len(smiles_list), args.output))
 
 if __name__ == '__main__':
@@ -41,6 +44,5 @@ if __name__ == '__main__':
 
 	# read SMILES
 	smiles_list = readSmiles(args.input)
-	for mol in smiles_list:
-		all_models = Smilestomodel(mol)
+	all_models = Smilestomodel(smiles_list)
 	write_SDF(all_models)
