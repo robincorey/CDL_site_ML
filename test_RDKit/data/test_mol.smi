@@ -1,3 +1,4 @@
 TITLE
-S(=O)(=O)(c1cccc2C[C@@H](CNc12)C)N[C@H](C(=O)N1[C@H](C[C@H](CC1)C)C(=O)O)CCCNC(=N)N     b7
-
+S(=O)(=O)(c1cccc2C[C@@H](CNc12)C)N[C@H](C(=O)N1[C@H](C[C@H](CC1)C)C(=O)O)CCCNC(=N)N     mol1
+S(=O)(=O)(c1cccc2C[C@@H](CNc12)C)N[C@H](C(=O)N1CCCCC1)CCCNC(=N)N        mol2
+OC(COP(O)(=O)OC[C@@H](COC([*])=O)OC([*])=O)COP(O)(=O)OC[C@@H](COC([*])=O)OC([*])=O     CL

@@ -55,8 +55,16 @@ Do additional FEP analyses, include Ala scan. Separate version for TRP as virtua
 05_ala_scan_res.sh
 ```
 
+Convert to AT here?
+
+Then run ML on the AT poses - need to dd this in
+
+Initial RDKit code prepared here:
+```
+test_RDKit/analyse_rdkit.py
+```
+
 STEP 6: prepare data for ML
-Pending trial analysis with CG
 ```
 06_training_data.sh
 ```
